@@ -1,1 +1,1 @@
-# TheChromaticBananas
+# Color Theory for Dummies by TheChromaticBaNANAs
