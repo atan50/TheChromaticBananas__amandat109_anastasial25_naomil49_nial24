@@ -1,1 +1,1 @@
-# Color Theory for Dummies by TheChromaticBaNANAs
+# Color Theory for Dummies by The Chromatic BaNANAs
