@@ -1,0 +1,11 @@
+amandaT -- 2025-05-07 19:23
+- Revised design doc (v.1):
+  - Program Components
+    - In light of marker-upers failing to notice use of favorite color:
+      - Moved fav-color based gradient background feature under fav color selection feature
+  - Component Map
+    - Removed Python Pillows and its image processing in favor of Tailwind's functionalities
+  - Site Map
+    - added /logout to breakdown
+    - reorganized to match program components listing
+    - added leaderboard feature under /game in breakdown
