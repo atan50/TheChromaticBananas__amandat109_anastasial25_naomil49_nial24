@@ -46,19 +46,19 @@ $ python3 -m PATH/TO/venv_name
 HTTPS METHOD (Recommended)
 
 ```
-$ https://github.com/leonhuang12/the_bluest_berries__leonh15_amandat109_jasonc573_nial24.git
+$ https://github.com/atan50/TheChromaticBananas__amandat109_anastasial25_naomil49_nial24.git
 ```
 
 SSH METHOD (Requires SSH Key to be set up):
 
 ```
-$ git@github.com:leonhuang12/the_bluest_berries__leonh15_amandat109_jasonc573_nial24.git
+$ git@github.com:atan50/TheChromaticBananas__amandat109_anastasial25_naomil49_nial24.git
 ```
 
 4. Navigate to project directory
 
 ```
-$ cd PATH/TO/the_bluest_berries__leonh15_amandat109_jasonc573_nial24/
+$ cd PATH/TO/TheChromaticBananas__amandat109_anastasial25_naomil49_nial24
 ```
 
 5. Install dependencies
@@ -72,7 +72,7 @@ $ pip install -r requirements.txt
 1. Navigate to project directory:
 
 ```
-$ cd PATH/TO/the_bluest_berries__leonh15_amandat109_jasonc573_nial24/
+$ cd PATH/TO/TheChromaticBananas__amandat109_anastasial25_naomil49_nial24
 ```
  
 2. Navigate to 'app' directory
