@@ -10,5 +10,10 @@ amandaT -- 2025-05-07 19:23
     - reorganized to match program components listing
     - added leaderboard feature under /game in breakdown
 
-anastasiaL -- 2025-05-08 11:45
-- created and set up mongo database, updated database and network access to include everyone
+amandaT, anastasiaL, niaL -- 2025-05-08 11:45
+- Mongo
+    - created and set up database, updated database and network access to include everyone
+- Flask
+  - created file structure
+- README
+  - added install guide and launch codes
