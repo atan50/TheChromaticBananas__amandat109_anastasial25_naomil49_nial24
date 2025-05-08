@@ -7,15 +7,18 @@
 * Nia Lam
 
 Amanda: PM and droplet host
+
 Amanda and Naomi: Front-end (especially game + color viewing)
  * HTML/CSS
  * JavaScript React
  * Utilizing Tailwind
+
 Anastasia: Backend
  * Database (MongoDB)
  * Python Flask
  * API
  * Profile page
+
 Nia: Backend 
  * Python/creating functions for the game, including:
     * random adjustments
