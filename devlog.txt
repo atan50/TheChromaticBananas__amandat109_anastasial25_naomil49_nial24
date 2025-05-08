@@ -17,3 +17,4 @@ amandaT, anastasiaL, niaL -- 2025-05-08 11:45
   - created file structure
 - README
   - added install guide and launch codes
+  - added roster roles
