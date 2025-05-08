@@ -1,10 +1,27 @@
 # Color Theory for Dummies by The Chromatic BaNANAs
 
-## Roster
+## Roster and Roles
 * Amanda Tan
 * Anastasia Lee
 * Naomi Lai
 * Nia Lam
+
+Amanda: PM and droplet host
+Amanda and Naomi: Front-end (especially game + color viewing)
+ * HTML/CSS
+ * JavaScript React
+ * Utilizing Tailwind
+Anastasia: Backend
+ * Database (MongoDB)
+ * Python Flask
+ * API
+ * Profile page
+Nia: Backend 
+ * Python/creating functions for the game, including:
+    * random adjustments
+    * developing user scoring, etc.
+ * Filling out the home page with information about color theory
+
 
 ## App Description/Summary
 Color Theory for Dummies is a website that uses interactive examples, games, and images to teach dummies about the elusive concept that is color theory. Is the dress white and gold or is it black and blue? Is the sneaker grey and teal or white and pink? How does context change the way we perceive color? Just as your brain can change how you perceive color, we’ll challenge you to guess how the colors in different images have been manipulated. We present to you: Color Theory, made by dummies for dummies.
