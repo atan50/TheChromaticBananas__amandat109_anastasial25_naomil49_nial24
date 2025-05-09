@@ -18,3 +18,6 @@ amandaT, anastasiaL, niaL -- 2025-05-08 11:45
 - README
   - added install guide and launch codes
   - added roster roles
+
+anastasiaL -- 2025-05-09 09:54
+- added working flask app (__init__.py, db.py, home.html, login.html, register.html, profile.html, styles.css)
