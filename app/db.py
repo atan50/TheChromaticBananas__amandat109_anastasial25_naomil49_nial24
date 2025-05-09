@@ -5,78 +5,50 @@ P05: Color Theory for Dummies
 2025-06-11
 """
 
-import sqlite3, os
+import pymongo
+import csv
+import bcrypt
 
-DATABASE_NAME = "DATABASE.db"
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+uri = "mongodb+srv://anastasial25:lqRQwo37qTkbKnlG@softdev-p5.cvervwo.mongodb.net/?retryWrites=true&w=majority&appName=softdev-p5"
 
-def createTables():
-    if os.path.exists(DATABASE_NAME):
-        print("Database already exists!!!\nWill not create tables")
-    else:
-        print("Creating tables...")
-        db = sqlite3.connect(DATABASE_NAME)
-        c = db.cursor()
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
 
-        #User Info
-        c.execute('''
-                CREATE TABLE IF NOT EXISTS UserData (
-                    username TEXT UNIQUE NOT NULL,
-                    password TEXT NOT NULL
-                    )
-            ''')
+db = client['database']
+user_collection = db['users']
 
-        db.commit()
-        db.close()
+def insert_user_data(username, password):
+    # use bcrypt as a password hasher
+    salt = bcrypt.gensalt()
+    hash = bcrypt.hashpw(password.encode('utf-8'), salt)
 
-        print("Tables successfully created \n")
-        return True
+    user_dict = {
+        'username': username,
+        # 'password': password, # plaintext password is NOT stored, only its salt and hash
+        'salt': salt,
+        'password_hash': hash
+    }
+    data_insertion = user_collection.insert_one(user_dict)
 
-#just call this when resetting db, it calls createTables
-#if not, call neither
-def resetDB():
-    if os.path.exists(DATABASE_NAME):
-        os.remove(DATABASE_NAME)
-        print("Resetting DB")
-        return createTables()
-    else:
-        print("Cannot reset database as database does not exist")
-        print("Creating database")
-        return createTables()
+def verify_user_login(inputted_username, inputted_password):
+    for user_document in user_collection.find({'username': inputted_username}, {'_id': 0, 'username': 0}):
+        salt = user_document['salt']
+        password_hash = user_document['password_hash']
 
-def createUser(username, password):
-    print(f"Adding user {username}")
-    db = sqlite3.connect(DATABASE_NAME)
-    c = db.cursor()
+        inputted_password_hash = bcrypt.hashpw(inputted_password.encode('utf-8'), salt)
+        if password_hash == inputted_password_hash:
+            print(f'Login successful for {inputted_username}!')
+            return True
+        else:
+            print('Incorrect password.')
+            return False
+    print('Username not found.')
+    return False
 
-    try:
-        c.execute('INSERT INTO UserData VALUES (?, ?)', (username, password))
-        db.commit()
-        db.close()
-        print("Successfully added user")
-        return True
-    except Exception as e:
-        print("Failed to add user (does the user already exist in the database?)")
-        db.close()
-        return False
 
-def checkLogin(username, password):
-    print(f"Checking login for {username}")
-    db = sqlite3.connect(DATABASE_NAME)
-    c = db.cursor()
-    c.execute("SELECT password FROM UserData WHERE username = ?", (username,))
-    row = c.fetchone()
 
-    if row == None:
-        print("Username does not exist in db")
-        return False #account w that email does not exist
-
-    if row[0] == password:
-        print("Login correct")
-        return True
-    else:
-        print("Incorrect password")
-        return False
-
-#will reset DB and add some data
-def createSampleData():
-    resetDB()
+def clear_collection(collection_name):
+    document_deletion = collection_name.delete_many({})
+    print(f'{document_deletion.deleted_count} documents deleted from {collection_name}.')
