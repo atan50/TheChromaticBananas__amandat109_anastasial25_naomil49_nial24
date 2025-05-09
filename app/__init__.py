@@ -19,45 +19,35 @@ def homeBase():
         return render_template('home.html', logged_in = True)
     return render_template('home.html', logged_in = False)
 
-@app.route('/logout', methods=['GET', 'POST'])
-def logout():
-    session.pop('username', None)
-    session.pop('password', None)
-    return redirect("/")
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    print("")
-    return render_template("login.html")
-
-@app.route('/auth_login', methods=['GET', 'POST'])
-def auth_login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        if db.checkLogin(username, password) == False:
-            flash("Invalid login information", 'danger')  # Show error message
-            return redirect('/login')
-        session['username'] = username
-        return redirect('/')
-    return render_template("login.html")
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        if 'login' in request.form:
+            user = user_collection.find_one({'username': username})
+            if user and verify_user_login(username, password):
+                session['username'] = username
+                flash('Login successful.')
+                return redirect('/')
+            else:
+                flash('Invalid username or password.')
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    return render_template("register.html")
+        elif 'register' in request.form:
+            confirm_pass = request.form.get('confirm_pass')
 
-@app.route('/auth_register', methods=['GET', 'POST'])
-def auth_register():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        if db.createUser(username, password) == False:
-            flash("Invalid: Account exists already", 'danger')  # Show error message
-            return redirect('/register')
-        session['username'] = username
-        session['password'] = password
-        return redirect('/')
-    return render_template("register.html")
+            if password != confirm_pass:
+                flash('Passwords do not match.')
+            else:
+                existing_user = user_collection.find_one({'username': username})
+                if existing_user:
+                    flash('Username already exists.')
+                else:
+                    insert_user_data(username, password)
+                    flash('Registration successful.')
+
+    return render_template('login.html')
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
@@ -65,6 +55,13 @@ def profile():
         return render_template("profile.html", logged_in=True, username = session['username'])
     else:
         return redirect('/login')
+
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session.pop('username', None)
+    session.pop('password', None)
+    return redirect("/")
 
 if __name__ == "__main__":
     app.debug = True
