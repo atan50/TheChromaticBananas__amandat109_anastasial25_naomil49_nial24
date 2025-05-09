@@ -9,3 +9,15 @@ amandaT -- 2025-05-07 19:23
     - added /logout to breakdown
     - reorganized to match program components listing
     - added leaderboard feature under /game in breakdown
+
+amandaT, anastasiaL, niaL -- 2025-05-08 11:45
+- Mongo
+    - created and set up database, updated database and network access to include everyone
+- Flask
+  - created file structure
+- README
+  - added install guide and launch codes
+  - added roster roles
+
+anastasiaL -- 2025-05-09 09:54
+- added working flask app (__init__.py, db.py, home.html, login.html, register.html, profile.html, styles.css)
