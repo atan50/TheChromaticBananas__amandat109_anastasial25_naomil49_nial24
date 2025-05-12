@@ -11,7 +11,7 @@ import db
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 # HOME PAGE, SHOULD PROMPT REGISTER OR LOGIN
-db.resetDB()
+# db.resetDB()
 
 @app.route('/', methods=['GET', 'POST'])
 def homeBase():
@@ -66,4 +66,3 @@ def logout():
 if __name__ == "__main__":
     app.debug = True
     app.run()
->>>>>>> 9c80b8d5adeb6210febc1181818f746d75fd06fd
