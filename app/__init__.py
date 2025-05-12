@@ -12,6 +12,15 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 # HOME PAGE, SHOULD PROMPT REGISTER OR LOGIN
 # db.resetDB()
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+uri = "mongodb+srv://anastasial25:lqRQwo37qTkbKnlG@softdev-p5.cvervwo.mongodb.net/?retryWrites=true&w=majority&appName=softdev-p5"
+
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+database = client['database']
+user_collection = database['users']
 
 @app.route('/', methods=['GET', 'POST'])
 def homeBase():
@@ -27,7 +36,7 @@ def login():
         
         if 'login' in request.form:
             user = user_collection.find_one({'username': username})
-            if user and verify_user_login(username, password):
+            if user and db.verify_user_login(username, password):
                 session['username'] = username
                 flash('Login successful.')
                 return redirect('/')
@@ -44,9 +53,10 @@ def login():
                 if existing_user:
                     flash('Username already exists.')
                 else:
-                    insert_user_data(username, password)
+                    db.insert_user_data(username, password)
+                    session['username'] = username
                     flash('Registration successful.')
-
+                    return redirect('/')
     return render_template('login.html')
 
 @app.route('/profile', methods=['GET', 'POST'])
