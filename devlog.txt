@@ -27,3 +27,7 @@ anastasiaL -- 2025-05-09 11:45
 - adjusted login and register code in __init__.py
 - adjusted login.html to include both login and register
 - eliminated register.html 
+
+anastasiaL -- 2025-05-12 11:47
+- got mongo database working (__init__.py)! (debugging)
+- updated requirements.txt to include bcrypt
