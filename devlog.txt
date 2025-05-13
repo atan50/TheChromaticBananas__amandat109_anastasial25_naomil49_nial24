@@ -23,6 +23,9 @@ anastasiaL -- 2025-05-09 09:54
 - added working flask app (__init__.py, db.py, home.html, login.html, register.html, profile.html, styles.css)
 
 anastasiaL -- 2025-05-09 11:45
+- updated flask app and HTML files to fit new components (Mongo, Tailwind, etc.)
+
+anastasiaL -- 2025-05-09 11:45
 - changed db.py file to use mongo database
 - adjusted login and register code in __init__.py
 - adjusted login.html to include both login and register

@@ -2,7 +2,7 @@
 The Chromatic BaNANAs: Amanda Tan, Anastasia Lee, Naomi Lai, and Nia Lam
 SoftDev
 P05: Color Theory for Dummies
-2025-06-11 
+2025-06-11
 */
 
 .switch {
@@ -11,14 +11,14 @@ P05: Color Theory for Dummies
     width: 300px;
     height: 34px;
   }
-  
+
   /* Hide default HTML checkbox */
   .switch input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-  
+
   /* The slider */
   .slider {
     position: absolute;
@@ -31,7 +31,7 @@ P05: Color Theory for Dummies
     -webkit-transition: .4s;
     transition: .4s;
   }
-  
+
   .slider:before {
     position: absolute;
     content: "";
@@ -43,30 +43,30 @@ P05: Color Theory for Dummies
     -webkit-transition: .4s;
     transition: .4s;
   }
-  
+
   input:checked + .slider {
     background-color: #2196F3;
   }
-  
+
   input:focus + .slider {
     box-shadow: 0 0 1px #2196F3;
   }
-  
+
   input:checked + .slider:before {
     -webkit-transform: translateX(246px);
     -ms-transform: translateX(246px);
     transform: translateX(246px);
   }
-  
+
   /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
   }
-  
+
   .slider.round:before {
     border-radius: 40%;
   }
-  
+
   body
   {
     font-family: "Open Sans";
@@ -76,15 +76,15 @@ P05: Color Theory for Dummies
     border: 1px solid #888;
     display: inline-block;
     padding:20px;
-  
+
   }
-  
+
   .top-right-form {
     position: absolute;
     top: 10px;
     right: 10px;
   }
-  
+
   .top-right-form button {
     background-color: #393f81;
     color: white;
@@ -93,38 +93,38 @@ P05: Color Theory for Dummies
     border-radius: 5px;
     cursor: pointer;
   }
-  
+
   .top-right-form button:hover {
     background-color: #555;
   }
-  
+
   .columnL {
     margin-left: 1%;
     float: left;
     width: 30%;
   }
-  
+
   .column {
     float: left;
     width: 35%;
   }
-  
+
   .columnR {
     float: left;
     width: 30%;
   }
-  
+
   .row:after {
     content: "";
     display: table;
     clear: both;
   }
-  
+
   #chart {
     max-width: 650px;
     margin: 35px auto;
   }
-  
+
   footer {
     position: fixed;
     bottom: 0;
