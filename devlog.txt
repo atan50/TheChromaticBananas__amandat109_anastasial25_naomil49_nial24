@@ -34,3 +34,6 @@ anastasiaL -- 2025-05-09 11:45
 anastasiaL -- 2025-05-12 11:47
 - got mongo database working (__init__.py)! (debugging)
 - updated requirements.txt to include bcrypt
+
+anastasiaL -- 2025-05-13 11:47
+- got Unsplash API to generate random images on the home page!
