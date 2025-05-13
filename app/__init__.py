@@ -6,10 +6,12 @@ P05: Color Theory for Dummies
 """
 
 from flask import Flask, render_template, request, redirect, session, flash
-import db
+from db import *
+import pymongo
+import os
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = 'your_secret_key' #os.urandom(32)
 # HOME PAGE, SHOULD PROMPT REGISTER OR LOGIN
 # db.resetDB()
 from pymongo.mongo_client import MongoClient
@@ -23,17 +25,18 @@ database = client['database']
 user_collection = database['users']
 
 @app.route('/', methods=['GET', 'POST'])
-def homeBase():
+def home():
     if('username' in session):
         return render_template('home.html', logged_in = True)
-    return render_template('home.html', logged_in = False)
+    # return render_template('home.html', logged_in = False)
+    return redirect(url_for('login'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        
+
         if 'login' in request.form:
             user = user_collection.find_one({'username': username})
             if user and db.verify_user_login(username, password):
@@ -76,4 +79,3 @@ def logout():
 if __name__ == "__main__":
     app.debug = True
     app.run(host='0.0.0.0')
-
