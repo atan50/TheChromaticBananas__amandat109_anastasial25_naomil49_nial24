@@ -37,3 +37,6 @@ anastasiaL -- 2025-05-12 11:47
 
 anastasiaL -- 2025-05-13 11:47
 - got Unsplash API to generate random images on the home page!
+
+anastasiaL -- 2025-05-16 11:18
+- finally fixed the login issue! turns out it was just one problematic account, not sure why it had problems
