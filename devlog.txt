@@ -38,5 +38,11 @@ anastasiaL -- 2025-05-12 11:47
 anastasiaL -- 2025-05-13 11:47
 - got Unsplash API to generate random images on the home page!
 
+niaL -- 2025-05-15 11:45
+- completed most of color-theory teaching content for site
+
+amandaT, naomiL, niaL -- 2025-05-15 11:47
+- made the decision to pivot from React to Sass for our frontend (plus the Tedx Talk requirement!)
+
 anastasiaL -- 2025-05-16 11:18
 - finally fixed the login issue! turns out it was just one problematic account, not sure why it had problems
