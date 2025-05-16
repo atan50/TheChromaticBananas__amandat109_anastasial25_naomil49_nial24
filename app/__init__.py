@@ -25,6 +25,10 @@ database = client['database']
 user_collection = database['users']
 
 @app.route('/', methods=['GET', 'POST'])
+def root():
+    return redirect('/home')
+
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     if('username' in session):
         return render_template('home.html', logged_in = True)
@@ -41,7 +45,7 @@ def login():
             if user and db.verify_user_login(username, password):
                 session['username'] = username
                 flash('Login successful.')
-                return redirect('/')
+                return redirect('/home')
             else:
                 flash('Invalid username or password.')
 
@@ -58,7 +62,7 @@ def login():
                     db.insert_user_data(username, password)
                     session['username'] = username
                     flash('Registration successful.')
-                    return redirect('/')
+                    return redirect('/home')
     return render_template('login.html')
 
 @app.route('/profile', methods=['GET', 'POST'])
@@ -73,7 +77,7 @@ def profile():
 def logout():
     session.pop('username', None)
     session.pop('password', None)
-    return redirect("/")
+    return redirect("/home")
 
 if __name__ == "__main__":
     app.debug = True
