@@ -46,3 +46,6 @@ amandaT, naomiL, niaL -- 2025-05-15 11:47
 
 anastasiaL -- 2025-05-16 11:18
 - finally fixed the login issue! turns out it was just one problematic account, not sure why it had problems
+
+anastasiaL -- 2025-05-19 11:45
+- worked on allowing the user to customize a gradient on the profile page
