@@ -29,6 +29,7 @@ def home():
     if('username' in session):
         return render_template('home.html', logged_in = True)
     return render_template('home.html', logged_in = False)
+    #return render_template('test.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -64,7 +65,7 @@ def login():
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     if ('username' in session):
-        return render_template("profile.html", logged_in=True, username = session['username'])
+        return render_template("profile.html", logged_in=True, username = session['username'], color1 = '#cc3399')
     else:
         return redirect('/login')
 
