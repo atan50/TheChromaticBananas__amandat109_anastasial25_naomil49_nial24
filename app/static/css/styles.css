@@ -5,152 +5,31 @@ P05: Color Theory for Dummies
 2025-06-11
 */
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 300px;
-    height: 34px;
-  }
+body
+{
+  font-family: "Open Sans";
+}
 
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  color: #000000;
+  text-align: right;
+  padding-right: 1rem;
+}
 
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
+#bigLogo {
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  width: 100%
+}
 
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 46px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
+*{
+  margin: 5px;
+}
 
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-
-  input:checked + .slider:before {
-    -webkit-transform: translateX(246px);
-    -ms-transform: translateX(246px);
-    transform: translateX(246px);
-  }
-
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-
-  .slider.round:before {
-    border-radius: 40%;
-  }
-
-  body
-  {
-    font-family: "Open Sans";
-  }
-  #wrapper
-  {
-    border: 1px solid #888;
-    display: inline-block;
-    padding:20px;
-
-  }
-
-  .top-right-form {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-
-  .top-right-form button {
-    background-color: #393f81;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .top-right-form button:hover {
-    background-color: #555;
-  }
-
-  .columnL {
-    margin-left: 1%;
-    float: left;
-    width: 30%;
-  }
-
-  .column {
-    float: left;
-    width: 35%;
-  }
-
-  .columnR {
-    float: left;
-    width: 30%;
-  }
-
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
-  #chart {
-    max-width: 650px;
-    margin: 35px auto;
-  }
-
-  footer {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    color: #000000;
-    text-align: right;
-    padding-right: 1rem;
-    }
-
-        #bigLogo {
-      text-align: center;
-      padding-top: 100px;
-      padding-bottom: 100px;
-      width: 100%
-    }
-    body{
-      background-image: url("../static/background.jpg");
-      background-size: 100%
-    }
-    #desc{
-      font-size: 25px;
-      padding: 20px 20px 10px 10px;
-      background-color: white;;
-      width: 90%
-    }
-
-    #unsplashImage {
-      max-height: 500px;
-    }
+.navbar-brand{
+  
+}
