@@ -69,7 +69,10 @@ def login():
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     if ('username' in session):
-        return render_template("profile.html", logged_in=True, username = session['username'], color1 = '#cc3399')
+        if request.method == 'POST':
+            to = request.form['to']
+            print(to)
+        return render_template("profile.html", logged_in=True, username = session['username'])
     else:
         return redirect('/login')
 

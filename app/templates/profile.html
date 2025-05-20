@@ -13,24 +13,15 @@ P05: Color Theory for Dummies
     <link href="static/css/styles.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
+      :root {
+        --color1: #33ccff;
+        --color2: #ff99cc;
+        --to: top right;
+      }
       body {
-        background-image: url("../static/background.jpg");
-      }
-      #container{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #ededed;
-        text-align: center;
-        padding: 20px;
-        border-radius: 10px;
-        width:50%;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      }
-      #profilePic{
-        border-radius: 75%;
-        height: 20%;
+        font-size: x-large;
+        background: linear-gradient(to var(--to), var(--color1) 0%, var(--color2) 100%);
+        background-attachment: fixed;
       }
   </style>
   </head>
@@ -72,18 +63,51 @@ P05: Color Theory for Dummies
         </div>
       </div>
     </nav>
-    <div id ="container" >
-      <img id = "profilePic" src = "https://i.pinimg.com/474x/93/ba/87/93ba871d62b0e2b83acadb45803a4d46.jpg" alt = "profile">
-      <!-- updated pfp to color -->
-      <h2>Hello, {{ username }}!</h2>
-    </div>
+    <h1>Hello, {{ username }}!</h1>
     </div>
 
-    <form>
-      <label for="favgrad">Select your favorite color gradient:</label>
-      <input type="color" id="color1" name="color1" value="#66ffff">
+    <form action="/profile" method="POST">
+      Select your favorite color gradient:
+      <br>
+      <label>Color 1:</label>
+      <input type="color" id="color1" name="color1" value="#33ccff">
+      <br>
+      <label>Color 2:</label>
       <input type="color" id="color2" name="color2" value="#ff99cc">
-      <p><input type="submit" value="Submit"></p>
+      
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="to" id="top" value="1" checked>
+        <label class="form-check-label" for="top"> ⬆ </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="to" id="bottom" value="2">
+        <label class="form-check-label" for="bottom"> ⬇ </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="to" id="right" value="3">
+        <label class="form-check-label" for="right"> ➡ </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="to" id="bottom" value="4">
+        <label class="form-check-label" for="left"> ⬅ </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="to" id="bottom" value="5">
+        <label class="form-check-label" for="left"> ↗️ </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="to" id="bottom" value="6">
+        <label class="form-check-label" for="left"> ↖️ </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="to" id="bottom" value="7">
+        <label class="form-check-label" for="left"> ↘️ </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="to" id="bottom" value="8">
+        <label class="form-check-label" for="left"> ↙️ </label>
+      </div>
+      <p><input type="submit" value="Save"></p>
     </form>
 </body>
 </html>
