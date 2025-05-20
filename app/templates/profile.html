@@ -74,22 +74,23 @@ P05: Color Theory for Dummies
       <br>
       <label>Color 2:</label>
       <input type="color" id="color2" name="color2" value="#ff99cc">
-      
+      <br>
+      Direction:
       <div class="form-check">
         <input class="form-check-input" type="radio" name="to" id="top" value="1" checked>
-        <label class="form-check-label" for="top"> ⬆ </label>
+        <label class="form-check-label" for="top"> ⬆️ </label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="to" id="bottom" value="2">
-        <label class="form-check-label" for="bottom"> ⬇ </label>
+        <label class="form-check-label" for="bottom"> ⬇️ </label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="to" id="right" value="3">
-        <label class="form-check-label" for="right"> ➡ </label>
+        <label class="form-check-label" for="right"> ➡️ </label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="to" id="bottom" value="4">
-        <label class="form-check-label" for="left"> ⬅ </label>
+        <label class="form-check-label" for="left"> ⬇️ </label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="to" id="bottom" value="5">
@@ -107,7 +108,20 @@ P05: Color Theory for Dummies
         <input class="form-check-input" type="radio" name="to" id="bottom" value="8">
         <label class="form-check-label" for="left"> ↙️ </label>
       </div>
-      <p><input type="submit" value="Save"></p>
+      <p><input type="submit" id="submitButton" value="Save"></p>
     </form>
+
+
+    <script>
+    var r = document.querySelector(':root');
+
+    document.addEventListener(
+              'DOMContentLoaded', () => {
+            document.getElementById('submitButton').
+            addEventListener('click', () => {
+                r.style.setProperty('--color1', '#40BF5C');
+            });
+    });
+    </script>
 </body>
 </html>

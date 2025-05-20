@@ -70,7 +70,11 @@ def login():
 def profile():
     if ('username' in session):
         if request.method == 'POST':
+            color1 = request.form['color1']
+            color2 = request.form['color2']
             to = request.form['to']
+            print(color1)
+            print(color2)
             print(to)
         return render_template("profile.html", logged_in=True, username = session['username'])
     else:
@@ -85,4 +89,5 @@ def logout():
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host='0.0.0.0')
+    app.run()
+    #app.run(host='0.0.0.0')
