@@ -49,3 +49,6 @@ anastasiaL -- 2025-05-16 11:18
 
 anastasiaL -- 2025-05-19 11:45
 - worked on allowing the user to customize a gradient on the profile page
+
+anastasiaL -- 2025-05-20 9:27
+- added direction form to profile page, figured out how to use variables in CSS
