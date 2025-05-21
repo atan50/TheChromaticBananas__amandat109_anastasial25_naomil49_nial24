@@ -4,18 +4,16 @@ SoftDev
 P05: Color Theory for Dummies
 2025-06-06
 """
-
+import os
+import pymongo
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 from flask import Flask, render_template, request, redirect, session, flash
 import db
-import pymongo
-import os
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
-# HOME PAGE, SHOULD PROMPT REGISTER OR LOGIN
-# db.resetDB()
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
+
 uri = "mongodb+srv://anastasial25:lqRQwo37qTkbKnlG@softdev-p5.cvervwo.mongodb.net/?retryWrites=true&w=majority&appName=softdev-p5"
 
 # Create a new client and connect to the server
@@ -33,7 +31,6 @@ def home():
     if('username' in session):
         return render_template('home.html', logged_in = True)
     return render_template('home.html', logged_in = False)
-    #return render_template('test.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -71,7 +68,8 @@ def profile():
     if ('username' in session):
         user = session['username']
         color_info = db.get_color_info(user)
-        list = ["top", "bottom", "right", "left", "top right", "top left", "bottom right", "bottom left"]
+        list = ["top", "bottom", "right", "left", "top right", 
+                "top left", "bottom right", "bottom left"]
         directions = ["", "", "", "", "", "", "", ""]
         directions[color_info[2]] = "checked"
         if request.method == 'POST':
@@ -82,7 +80,10 @@ def profile():
             color_info = db.get_color_info(user)
             directions = ["", "", "", "", "", "", "", ""]
             directions[to] = "checked"
-        return render_template("profile.html", logged_in=True, username = user, c1 = color_info[0], c2 = color_info[1], d = directions, dir = list[color_info[2]])
+        return render_template("profile.html", logged_in = True, 
+                               username = user, c1 = color_info[0], 
+                               c2 = color_info[1], d = directions, 
+                               dir = list[color_info[2]])
     else:
         return redirect('/login')
 
