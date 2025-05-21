@@ -69,14 +69,23 @@ def login():
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     if ('username' in session):
+        # these become default database values
+        color1 = '#33ccff'
+        color2 = '#ff99cc'
+        list = ["top", "bottom", "right", "left", "top right", "top left", "bottom right", "bottom left"]
+        to = 0
+        directions = ["checked", "", "", "", "", "", "", ""]
         if request.method == 'POST':
             color1 = request.form['color1']
             color2 = request.form['color2']
-            to = request.form['to']
+            to = int(request.form['to'])
             print(color1)
             print(color2)
             print(to)
-        return render_template("profile.html", logged_in=True, username = session['username'])
+            directions = ["", "", "", "", "", "", "", ""]
+            directions[to] = "checked"
+            # update database!!!
+        return render_template("profile.html", logged_in=True, username = session['username'], c1 = color1, c2 = color2, d = directions, dir = list[to])
     else:
         return redirect('/login')
 
