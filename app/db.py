@@ -4,13 +4,12 @@ SoftDev
 P05: Color Theory for Dummies
 2025-06-06
 """
-
-import pymongo
 import csv
 import bcrypt
-
+import pymongo
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+
 uri = "mongodb+srv://anastasial25:lqRQwo37qTkbKnlG@softdev-p5.cvervwo.mongodb.net/?retryWrites=true&w=majority&appName=softdev-p5"
 
 # Create a new client and connect to the server
@@ -26,7 +25,7 @@ def insert_user_data(username, password):
 
     user_dict = {
         'username': username,
-        # 'password': password, # plaintext password is NOT stored, only its salt and hash
+        # plaintext password is NOT stored, only its salt and hash
         'salt': salt,
         'password_hash': hash,
         'color1': '#33ccff',
@@ -36,10 +35,9 @@ def insert_user_data(username, password):
     user_collection.insert_one(user_dict)
 
 def verify_user_login(inputted_username, inputted_password):
-    for user_document in user_collection.find({'username': inputted_username}, {'_id': 0, 'username': 0}):
+    for user_document in user_collection.find({'username': inputted_username}):
         salt = user_document['salt']
         password_hash = user_document['password_hash']
-
         inputted_password_hash = bcrypt.hashpw(inputted_password.encode('utf-8'), salt)
         if password_hash == inputted_password_hash:
             print(f'Login successful for {inputted_username}!')
@@ -51,14 +49,15 @@ def verify_user_login(inputted_username, inputted_password):
     return False
 
 def get_color_info(username):
-    for user_document in user_collection.find({'username': username}, {'_id': 0, 'username': 0}):
+    for user_document in user_collection.find({'username': username}):
         color_info = [user_document['color1'], user_document['color2'], user_document['to']]
     return color_info
 
 def update_color_info(username, color1, color2, to):
-    user_collection.update_one( {'username': username},
-                              {'$set': {'color1': color1, 'color2': color2, 'to': to}}
-                              )
+    user_collection.update_one( 
+        {'username': username},
+        {'$set': {'color1': color1, 'color2': color2, 'to': to}}
+        )
 
 def clear_collection(collection_name):
     document_deletion = collection_name.delete_many({})
