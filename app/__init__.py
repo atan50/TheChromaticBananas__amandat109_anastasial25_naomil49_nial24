@@ -72,12 +72,14 @@ def profile():
         user = session['username']
         color_info = db.get_color_info(user)
         list = ["top", "bottom", "right", "left", "top right", "top left", "bottom right", "bottom left"]
-        directions = ["checked", "", "", "", "", "", "", ""]
+        directions = ["", "", "", "", "", "", "", ""]
+        directions[color_info[2]] = "checked"
         if request.method == 'POST':
             color1 = request.form['color1']
             color2 = request.form['color2']
             to = int(request.form['to'])
             db.update_color_info(user, color1, color2, to)
+            color_info = db.get_color_info(user)
             directions = ["", "", "", "", "", "", "", ""]
             directions[to] = "checked"
         return render_template("profile.html", logged_in=True, username = user, c1 = color_info[0], c2 = color_info[1], d = directions, dir = list[color_info[2]])

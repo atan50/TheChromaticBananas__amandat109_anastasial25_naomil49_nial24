@@ -29,11 +29,11 @@ def insert_user_data(username, password):
         # 'password': password, # plaintext password is NOT stored, only its salt and hash
         'salt': salt,
         'password_hash': hash,
-        'color': '#33ccff',
+        'color1': '#33ccff',
         'color2': '#ff99cc',
         'to': 0
     }
-    data_insertion = user_collection.insert_one(user_dict)
+    user_collection.insert_one(user_dict)
 
 def verify_user_login(inputted_username, inputted_password):
     for user_document in user_collection.find({'username': inputted_username}, {'_id': 0, 'username': 0}):
@@ -56,10 +56,9 @@ def get_color_info(username):
     return color_info
 
 def update_color_info(username, color1, color2, to):
-    for user_document in user_collection.find({'username': username}, {'_id': 0, 'username': 0}):
-        user_document['color1'] = color1
-        user_document['color2'] = color2
-        user_document['to'] = to
+    user_collection.update_one( {'username': username},
+                              {'$set': {'color1': color1, 'color2': color2, 'to': to}}
+                              )
 
 def clear_collection(collection_name):
     document_deletion = collection_name.delete_many({})
