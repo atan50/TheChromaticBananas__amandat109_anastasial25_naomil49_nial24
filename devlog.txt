@@ -68,3 +68,8 @@ naomiL -- 2025-05-21 11:16
 
 anastasiaL -- 2025-05-21 11:16
 - added new color and direction attributes to user database (db.py, __init__.py)
+
+anastasiaL -- 2025-05-21 14:53
+- the database now successfully stores color and direction attributes!
+  - backend of profile page is done
+- made small styling edits
