@@ -65,3 +65,6 @@ naomiL -- 2025-05-21 11:16
 - added title
 - researched + applied tailwind classes (flex, font size)
   - to do: tailwind theme configuration
+
+anastasiaL -- 2025-05-21 11:16
+- added new color and direction attributes to user database (db.py, __init__.py)
