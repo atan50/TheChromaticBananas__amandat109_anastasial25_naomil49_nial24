@@ -87,6 +87,9 @@ def profile():
     else:
         return redirect('/login')
 
+@app.route('/random', methods = ['GET', 'POST'])
+def random():
+    return render_template('random.html')
 
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():
