@@ -13,7 +13,7 @@ from pymongo.server_api import ServerApi
 uri = "mongodb+srv://anastasial25:lqRQwo37qTkbKnlG@softdev-p5.cvervwo.mongodb.net/?retryWrites=true&w=majority&appName=softdev-p5"
 
 # Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
+client = MongoClient(uri, server_api = ServerApi('1'))
 
 database = client['database']
 user_collection = database['users']
