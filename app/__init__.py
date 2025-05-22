@@ -17,12 +17,12 @@ app.secret_key = os.urandom(32)
 uri = "mongodb+srv://anastasial25:lqRQwo37qTkbKnlG@softdev-p5.cvervwo.mongodb.net/?retryWrites=true&w=majority&appName=softdev-p5"
 
 # Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
+client = MongoClient(uri, server_api = ServerApi('1'))
 
 database = client['database']
 user_collection = database['users']
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods = ['GET', 'POST'])
 def root():
     return redirect('/home')
 
@@ -32,7 +32,7 @@ def home():
         return render_template('home.html', logged_in = True)
     return render_template('home.html', logged_in = False)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form.get('username')
@@ -63,7 +63,7 @@ def login():
                     return redirect('/home')
     return render_template('login.html')
 
-@app.route('/profile', methods=['GET', 'POST'])
+@app.route('/profile', methods = ['GET', 'POST'])
 def profile():
     if ('username' in session):
         user = session['username']
@@ -88,7 +88,7 @@ def profile():
         return redirect('/login')
 
 
-@app.route('/logout', methods=['GET', 'POST'])
+@app.route('/logout', methods = ['GET', 'POST'])
 def logout():
     session.pop('username', None)
     session.pop('password', None)
