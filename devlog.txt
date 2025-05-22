@@ -73,3 +73,27 @@ anastasiaL -- 2025-05-21 14:53
 - the database now successfully stores color and direction attributes!
   - backend of profile page is done
 - made small styling edits
+
+
+============================================
+Application of Python style:
+
+Which aspects of the style guide were most applicable to your codebase?
+- Limit all lines to a maximum of 79 characters: __init__.py lines 71 and 83 are now multiple lines
+- Order and position of imports: __init__.py lines 7-12, db.py lines 7-11
+
+Which aspects of the style guide were most useful/appreciated by your Devos?
+- Indentation
+- Whitespace in Expressions and Statements
+- Function and Variable Names
+============================================
+
+============================================
+Application of JavaScript style:
+
+Which aspects of the style guide were most applicable to your codebase?
+- Comments
+
+Which aspects of the style guide were most useful/appreciated by your Devos?
+
+============================================
