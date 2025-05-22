@@ -74,26 +74,47 @@ anastasiaL -- 2025-05-21 14:53
   - backend of profile page is done
 - made small styling edits
 
+anastasiaL -- 2025-05-22 11:47
+- worked on applying python and javascript style
+
+anastasiaL -- 2025-05-22 18:08
+- moved API image to random.html
+- finished application of python and javascript style to devlog
+
 
 ============================================
 Application of Python style:
 
 Which aspects of the style guide were most applicable to your codebase?
-- Limit all lines to a maximum of 79 characters: __init__.py lines 71 and 83 are now multiple lines
-- Order and position of imports: __init__.py lines 7-12, db.py lines 7-11
+- Limit all lines to a maximum of 79 characters
+  --> __init__.py lines 71 and 83 are now multiple lines
+- Order and position of imports: 
+  - Imports should be grouped in the following order:
+    1. Standard library imports.
+    2. Related third party imports.
+    3. Local application/library specific imports.
+  --> __init__.py lines 7-12, db.py lines 7-11 have imports in the correct order
 
 Which aspects of the style guide were most useful/appreciated by your Devos?
-- Indentation
-- Whitespace in Expressions and Statements
-- Function and Variable Names
+- Appreciated: Indentation
+- Useful: Whitespace in Expressions and Statements
+- Appreciated: Function and Variable Names
 ============================================
 
 ============================================
 Application of JavaScript style:
+Note: So far, we don't have that much JavaScript in our codebase.
 
 Which aspects of the style guide were most applicable to your codebase?
-- Comments
+- Variable names, variable declarations
+  - If a variable will not be reassigned, use const
+  --> random.html lines 21-26 now use const rather than let
+- Console Logging
+  - When logging a message, use console.log(); when logging an error, use console.error().
+  --> random.html line 36 now uses console.error()
 
 Which aspects of the style guide were most useful/appreciated by your Devos?
-
+- Appreciated: Comments
+- Appreciated: Use braces with control flow statements and loops
+- Useful: Conditional operators
 ============================================
