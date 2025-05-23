@@ -65,3 +65,7 @@ naomiL -- 2025-05-21 11:16
 - added title
 - researched + applied tailwind classes (flex, font size)
   - to do: tailwind theme configuration
+
+naomiL -- 2025-05-23 11:43
+- fixed layout/margins for base template on nav bar and context on home page
+- learned more tailwind! font and element align, flex boxes, space between, width
