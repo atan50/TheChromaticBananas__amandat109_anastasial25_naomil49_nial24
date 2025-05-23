@@ -1,9 +1,3 @@
-<!--
-The Chromatic BaNANAs: Amanda Tan, Anastasia Lee, Naomi Lai, and Nia Lam
-SoftDev
-P05: Color Theory for Dummies
-2025-06-06
--->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -25,19 +19,24 @@ P05: Color Theory for Dummies
 		<div class="flex flex-col">
 			<!-- navbar -->
 			<nav>
-				<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+				<div class="w-full px-2 sm:px-6 lg:px-8">
 		      <div class="relative flex h-16 items-center justify-between">
-		        <a href="/home"> The Chromatic BaNANAs </a>
-				<a href="/random">Game</a>
-		        <a href="/profile">Profile</a>
-				    <a href="/logout">Log out</a>
-				    <a href="/login">Log in</a>
+		        <span class="inset-y-0 left"><a href="/home"> The Chromatic BaNANAs </a></span>
+						<div class="flex-grow text-right">
+							<a href="/game"> Game </a>
+						  {% if logged_in %}
+				        <a class="mx-4" href="/profile">Profile</a>
+						    <a class="mx-4" href="/logout">Log out</a>
+							{% else %}
+						    <a class="mx-4" href="/login">Log in</a>
+							{% endif %}
+						</div>
 					</div>
 				</div>
 	    </nav>
 
-	    <main class="flex-grow">
-	      <div>
+	    <main class="flex-grpw">
+	      <div class="flex flex-col space-y-4 mx-8">
 	        {% block content %}
 	        {% endblock %}
 	      </div>
