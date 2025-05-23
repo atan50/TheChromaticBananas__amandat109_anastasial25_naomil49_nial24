@@ -16,7 +16,7 @@ app = Flask(__name__)
 assets = Environment(app)
 bundles = {  # define nested Bundle
   'style': Bundle(
-            'SCSS/style.scss',
+            'scss/style.scss',
             filters='pyscss',
             output='Gen/sass_style.css',
   )

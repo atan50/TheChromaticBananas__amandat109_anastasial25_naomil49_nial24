@@ -1,0 +1,39 @@
+/*
+The Chromatic BaNANAs: Amanda Tan, Anastasia Lee, Naomi Lai, and Nia Lam
+SoftDev
+P05: Color Theory for Dummies
+2025-06-11
+*/
+
+body
+{
+  font-family: "Open Sans";
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  color: #000000;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+#bigLogo {
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  width: 100%
+}
+
+*{
+  margin: 5px;
+}
+
+.navbar-brand{
+
+}
+
+.imageContainer{
+  width: 50%;
+}
