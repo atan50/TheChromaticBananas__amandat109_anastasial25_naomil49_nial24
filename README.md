@@ -89,6 +89,8 @@ $ pip install -r requirements.txt
         
 # Launch Codes
 
+## Run local host
+
 1. Navigate to project directory:
 
 ```
@@ -114,5 +116,8 @@ $ cd PATH/TO/TheChromaticBananas__amandat109_anastasial25_naomil49_nial24
 
 ```    
 * Local Host running on http://127.0.0.1:5000
+```
+
+## Run working site
 * Working site running on https://p5.nlai.tech/
-``` 
+
