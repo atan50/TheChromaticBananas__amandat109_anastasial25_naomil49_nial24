@@ -10,6 +10,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from flask import Flask, render_template, request, redirect, session, flash
 import db
+from color import *
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -86,6 +87,27 @@ def profile():
                                dir = list[color_info[2]])
     else:
         return redirect('/login')
+
+@app.route('/color', methods=['GET', 'POST'])
+def color():
+    colors = color_randomizer()
+    print(colors)
+    return render_template(
+        "color.html",
+        inner_left=colors["inner_left"],
+        inner_right=colors["inner_right"],
+        outer_left=colors["outer_left"],
+        outer_right=colors["outer_right"],
+        same=colors["same"]
+    )
+
+@app.route('/color/guess', methods=["POST"])
+def handle_guess():
+    guess = request.form["guess"]
+    correct = request.form["correct"]
+
+    result = "Correct!" if guess == correct else "Wrong :("
+    return f"<h3>{result}</h3><p>Your guess: {guess} | Answer: {correct}</p><a href='/color'>Play Again</a>"
 
 @app.route('/random', methods = ['GET', 'POST'])
 def random():

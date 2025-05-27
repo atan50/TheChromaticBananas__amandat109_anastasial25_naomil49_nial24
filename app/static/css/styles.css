@@ -26,10 +26,10 @@ footer {
   width: 100%
 }
 
-.navbar-brand{
-
+*{
+  margin: 5px;
 }
 
-.imageContainer{
-  width: 50%;
+p {
+  line-height: 35px;
 }
