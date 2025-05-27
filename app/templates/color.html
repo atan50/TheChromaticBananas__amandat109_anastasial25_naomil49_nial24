@@ -5,17 +5,20 @@ SoftDev
 P05: Color Theory for Dummies
 2025-06-06
 -->
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Color Viewing</title>
 
-    <link href="static/css/styles.css" rel="stylesheet"/>
-    <style>
+<head>
+  <title>Color Viewing</title>
+  <style>
       /* square styling */
+
+      .anchor{
+        anchor-name: --Anchor;
+        width: fit-content;
+      }
+
     .square {
-        position: absolute;
+        position: fixed;
+        position-anchor:
     }
 
     #square-left-inside {
@@ -47,40 +50,43 @@ P05: Color Theory for Dummies
         z-index: 1;
     }
 
-    .guess {
+    /* .guess {
         position: relative;
         top: 550px;
         margin: 10px;
-    }
+    } */
 
       /* .test{
         position: absolute;
         right: 0px;
         padding: 50px;
       } */
+  </style>
+</head>
 
-    </style>
+<!DOCTYPE html>
 
-  </head>
-  <body>
-    <h2>Color Viewing</h2>
-        <p> Guess if the squares in the center are the same color or not! </p>
+{% extends 'base.html' %}
 
+{% block content %}
 
-    <div class="square" id = "square-left-inside"> left inside </div>
-    <div class="square" id = "square-left-outside"> left outside </div>
-    <div class="square" id = "square-right-inside"> right inside </div>
-    <div class="square" id = "square-right-outside"> right outside </div>
+<!-- heading -->
+<div>
+  <h1 class="text-6xl"> Color Viewing </h1><br>
+  <p class="italic"> Guess if the squares in the center are the same color or not! </p>
+</div>
 
-    <form method="POST" action="/color/guess">
-        <button class="guess-btn" name="guess" value="same">same</button>
-        <button class="guess-btn" name="guess" value="different">different</button>
-        <input type="hidden" name="correct" value="{{ 'same' if same else 'different' }}">
-      </form>
-    <!-- <p class="test"> testing </p> -->
+<div class="anchor">Left </div>
 
-    <footer>
-      Copyright © 2025 The Chromatic BaNANAs
-    </footer>
-  </body>
-</html>
+<div class="square" id = "square-left-inside"> left inside </div>
+<div class="square" id = "square-left-outside"> left outside </div>
+
+<div class="square" id = "square-right-inside"> right inside </div>
+<div class="square" id = "square-right-outside"> right outside </div>
+
+<form method="POST" action="/color/guess">
+    <button class="guess-btn" name="guess" value="same">same</button>
+    <button class="guess-btn" name="guess" value="different">different</button>
+    <input type="hidden" name="correct" value="{{ 'same' if same else 'different' }}">
+</form>
+{% endblock %}
