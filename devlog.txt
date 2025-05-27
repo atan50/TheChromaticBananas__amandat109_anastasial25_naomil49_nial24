@@ -50,11 +50,17 @@ anastasiaL -- 2025-05-16 11:18
 anastasiaL -- 2025-05-19 11:45
 - worked on allowing the user to customize a gradient on the profile page
 
+niaL -- 2025-05-19 11:45
+- worked on displaying of colors on for color page
+
 anastasiaL -- 2025-05-20 9:27
 - added direction form to profile page, figured out how to use variables in CSS
 
 anastasiaL -- 2025-05-20 11:45
 - worked on profile page
+
+niaL -- 2025-05-20 11:45
+- fixed general alignment of color blocks
 
 anastasiaL -- 2025-05-20 23:42
 - gradient colors and direction successfully update when the user submits the form!
@@ -66,6 +72,15 @@ naomiL -- 2025-05-21 11:16
 - researched + applied tailwind classes (flex, font size)
   - to do: tailwind theme configuration
 
+niaL -- 2025-05-22 11:45
+- worked on color viewing game
+
 naomiL -- 2025-05-23 11:43
 - fixed layout/margins for base template on nav bar and context on home page
 - learned more tailwind! font and element align, flex boxes, space between, width
+
+niaL -- 2025-05-23 11:45
+- worked on color viewing game
+
+niaL -- 2025-05-24 5:57
+- finished color vieweing game: randomizer, guesses, and display (just kinda ugly atm)
