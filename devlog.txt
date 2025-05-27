@@ -85,3 +85,9 @@ niaL -- 2025-05-23 11:45
 
 niaL -- 2025-05-24 5:57
 - finished color vieweing game: randomizer, guesses, and display (just kinda ugly atm)
+
+naomiL -- 2025-05-27 11:45
+- themes
+- extended base for color
+- working on position for squares
+- why no external css :(
