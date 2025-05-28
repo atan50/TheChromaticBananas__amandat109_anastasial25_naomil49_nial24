@@ -91,3 +91,6 @@ naomiL -- 2025-05-27 11:45
 - extended base for color
 - working on position for squares
 - why no external css :(
+
+naomiL -- 2025-05-28 11:47
+- color game positioning (anchor, absolute, margin) complete
