@@ -18,7 +18,7 @@ bundles = {  # define nested Bundle
   'style': Bundle(
             'scss/style.scss',
             filters='pyscss',
-            output='Gen/sass_style.css',
+            output='css/style.css',
   )
 }
 assets.register(bundles)
