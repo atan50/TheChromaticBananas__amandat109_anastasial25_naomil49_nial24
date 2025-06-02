@@ -12,6 +12,10 @@ P05: Color Theory for Dummies
 {% block content %}
 
 <style>
+
+:root {
+--link: {{link}};
+}
 .imageContainer{
   width: 50%;
 }
@@ -19,8 +23,18 @@ P05: Color Theory for Dummies
   width: 50%;
   filter: saturate(50%);
 }
+
+main {
+    background:url(var(--link));
+    width: 300px;
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 </style>
 
+<!--
 <div class="imageContainer">
   <a id="imageLink" href="#">
     <img alt="" id="unsplashImage" />
@@ -34,14 +48,27 @@ P05: Color Theory for Dummies
     <img alt="" id="unsplashImage1" />
   </a>
 </div>
+-->
+
+
+
+<main class="image__wrapper">
+  <img src="" alt="" width="" >
+</main>
+
+
+<main class="image__wrapper">
+  <img src="" alt="" width="" >
+</main>
 
 <script>
-const clientID = "uWM9sQ5gmxuIo55YD6WvP2wa6w0gCi3gUeLc6qAY_T4";
-const endpoint = `https://api.unsplash.com/photos/random/?client_id=${clientID}`;
+var clientID = "uWM9sQ5gmxuIo55YD6WvP2wa6w0gCi3gUeLc6qAY_T4";
+var endpoint = `https://api.unsplash.com/photos/random/?client_id=${clientID}`;
 
-const imageElement = document.querySelector("#unsplashImage");
-const imageLink = document.querySelector("#imageLink");
-const creator = document.querySelector("#creator");
+var imageElement = document.querySelector("#unsplashImage");
+var imageLink = document.querySelector("#imageLink");
+var creator = document.querySelector("#creator");
+
 fetch(endpoint)
 .then((response) => response.json())
 .then((jsonData) => {
@@ -54,23 +81,7 @@ fetch(endpoint)
     console.error("Error: " + error);
 });
 
-const imageElement1 = document.querySelector("#unsplashImage1");
-const imageLink1 = document.querySelector("#imageLink1");
-const creator1 = document.querySelector("#creator1");
-fetch(endpoint)
-.then((response) => response.json())
-.then((jsonData) => {
-    imageElement1.src = jsonData.urls.full;
-    imageLink1.setAttribute("href", jsonData.links.html);
-    creator1.innerText = jsonData.user.name;
-    creator1.setAttribute("href", jsonData.user.portfolio_url);
-})
-.catch((error) => {
-    console.error("Error: " + error);
-});
-
-// document.body.appendChild(imageElement);
-// document.body.appendChild(imageElement);
+var r = document.querySelector(':root');
 </script>
 
 {% endblock %}
