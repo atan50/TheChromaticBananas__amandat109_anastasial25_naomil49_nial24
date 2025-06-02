@@ -27,26 +27,25 @@ P05: Color Theory for Dummies
 {% endwith %}
 
 <!-- Login and registration forms -->
-<div class="horizontal-flex">
-  <div class="login-forms">
-    <h4> Log In </h4>
-    <form action="/login" method="POST">
-      <input class="rounded-full border-2 outline-offset-4"type="text" name="username" placeholder="Username" required><br><br>
-      <input type="password" name="password" placeholder="Password" required><br><br>
-      <input type="submit" name="login" value="Login">
-    </form>
-  </div><br><br>
-
-  <div class="login-forms">
-    <h4> Sign Up </h4>
-    <form action="/login" method="POST">
-        <input type="text" name="username" placeholder="Username" required><br><br>
-        <input type="password" name="password" placeholder="Password" required><br><br>
-        <input type="password" name="confirm_pass" placeholder="Confirm Password"><br><br>
-        <input type="submit" name="register" value="Register">
+<div class="flex lg:flex-row sm:flex-col justify-center">
+  <div class="lg:w-1/3">
+    <form class="space-y-3" action="/login" method="POST">
+      <h4 class="text-xl"> Log In </h4>
+      <input class="rounded-full border-2 outline-offset-8 p-1 w-full" type="text" name="username" placeholder="Username" required><br>
+      <input class="rounded-full border-2 outline-offset-8 p-1 w-full" type="password" name="password" placeholder="Password" required><br>
+      <input class="rounded-full outline-offset-8 p-2 bg-neutral-200 w-full" type="submit" name="login" value="Login">
     </form>
   </div>
 
+  <div class="lg:w-1/3">
+    <form class="space-y-3" action="/login" method="POST">
+      <h4 class="text-xl"> Sign Up </h4>
+      <input class="rounded-full border-2 outline-offset-8 p-1 w-full" type="text" name="username" placeholder="Username" required><br>
+      <input class="rounded-full border-2 outline-offset-8 p-1 w-full" type="password" name="password" placeholder="Password" required><br> 
+      <input class="rounded-full border-2 outline-offset-8 p-1 w-full" type="password" name="confirm_pass" placeholder="Confirm Password"><br>
+      <input class="rounded-full outline-offset-8 p-2 bg-neutral-200 w-full" type="submit" name="register" value="Register">
+    </form>
+  </div>
 </div>
 
 {% endblock %}
