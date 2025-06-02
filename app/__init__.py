@@ -111,7 +111,7 @@ def handle_guess():
 
 @app.route('/random', methods = ['GET', 'POST'])
 def random():
-    return render_template('random.html')
+    return render_template('random.html', link = 'https://images.unsplash.com/photo-1748199625283-581bc1e9b1a8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTA3ODF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NDg4NzgxMTh8&ixlib=rb-4.1.0&q=85')
 
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():
