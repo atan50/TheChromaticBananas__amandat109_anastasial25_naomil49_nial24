@@ -157,3 +157,8 @@ anastasiaL -- 2025-05-28 11:47
 
 anastasiaL -- 2025-05-29 11:47
 - gave feedback to Lorem Ipsum on the QAF
+
+naomiL -- 2025-06-02 11:43
+- styling on profile
+  - navbar
+- styling on login page
