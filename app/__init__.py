@@ -13,10 +13,26 @@ from urllib.request import Request, urlopen
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from flask import Flask, render_template, request, redirect, session, flash
+from flask_assets import Environment, Bundle
 import db
 from color import *
 
 app = Flask(__name__)
+assets = Environment(app)
+bundles = {  # define nested Bundle
+  'style': Bundle(
+            'scss/style.scss',
+            filters='pyscss',
+            output='css/style.css',
+  ),
+  'color': Bundle(
+            'scss/color.scss',
+            filters='pyscss',
+            output='css/color.css',
+        )
+}
+assets.register(bundles)
+
 app.secret_key = os.urandom(32)
 
 uri = "mongodb+srv://anastasial25:lqRQwo37qTkbKnlG@softdev-p5.cvervwo.mongodb.net/?retryWrites=true&w=majority&appName=softdev-p5"
