@@ -1,0 +1,49 @@
+/* square styling */
+.square {
+  position: absolute;
+}
+
+#square-left-inside {
+  left: 20%;
+  height: 200px;
+  width: 200px;
+  background-color: {{ inner_left }};
+  z-index: 2;
+}
+#square-left-outside {
+  left: 15%;
+  height: 500px;
+  width: 500px;
+  background-color: {{ outer_left }};
+  z-index: 1;
+}
+#square-right-inside {
+  right: 20%;
+  height: 200px;
+  width: 200px;
+  background-color: {{ inner_right }};
+  z-index: 2;
+}
+#square-right-outside {
+  right: 15%;
+  height: 500px;
+  width: 500px;
+  background-color: {{ outer_right }};
+  z-index: 1;
+}
+
+.guess {
+  position: relative;
+  top: 550px;
+  margin: 10px;
+}
+
+/* .test{
+  position: absolute;
+  right: 0px;
+  padding: 50px;
+} */
+
+h2 {
+  font-color: red;
+}

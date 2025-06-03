@@ -13,10 +13,26 @@ from urllib.request import Request, urlopen
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from flask import Flask, render_template, request, redirect, session, flash
+from flask_assets import Environment, Bundle
 import db
 from color import *
 
 app = Flask(__name__)
+assets = Environment(app)
+bundles = {  # define nested Bundle
+  'style': Bundle(
+            'scss/style.scss',
+            filters='pyscss',
+            output='css/style.css',
+  ),
+  'color': Bundle(
+            'scss/color.scss',
+            filters='pyscss',
+            output='css/color.css',
+        )
+}
+assets.register(bundles)
+
 app.secret_key = os.urandom(32)
 
 uri = "mongodb+srv://anastasial25:lqRQwo37qTkbKnlG@softdev-p5.cvervwo.mongodb.net/?retryWrites=true&w=majority&appName=softdev-p5"
@@ -73,7 +89,7 @@ def profile():
     if ('username' in session):
         user = session['username']
         color_info = db.get_color_info(user)
-        list = ["top", "bottom", "right", "left", "top right", 
+        list = ["top", "bottom", "right", "left", "top right",
                 "top left", "bottom right", "bottom left"]
         directions = ["", "", "", "", "", "", "", ""]
         directions[color_info[2]] = "checked"
@@ -85,9 +101,9 @@ def profile():
             color_info = db.get_color_info(user)
             directions = ["", "", "", "", "", "", "", ""]
             directions[to] = "checked"
-        return render_template("profile.html", logged_in = True, 
-                               username = user, c1 = color_info[0], 
-                               c2 = color_info[1], d = directions, 
+        return render_template("profile.html", logged_in = True,
+                               username = user, c1 = color_info[0],
+                               c2 = color_info[1], d = directions,
                                dir = list[color_info[2]])
     else:
         return redirect('/login')
