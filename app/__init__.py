@@ -5,7 +5,11 @@ P05: Color Theory for Dummies
 2025-06-06
 """
 import os
+import urllib
+import json
+import random
 import pymongo
+from urllib.request import Request, urlopen
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from flask import Flask, render_template, request, redirect, session, flash
@@ -110,8 +114,20 @@ def handle_guess():
     return f"<h3>{result}</h3><p>Your guess: {guess} | Answer: {correct}</p><a href='/color'>Play Again</a>"
 
 @app.route('/random', methods = ['GET', 'POST'])
-def random():
-    return render_template('random.html')
+def random_game():
+    key = 'uWM9sQ5gmxuIo55YD6WvP2wa6w0gCi3gUeLc6qAY_T4'
+    endpoint = 'https://api.unsplash.com/photos/random/?client_id=' + key
+    req = Request(url=endpoint, headers={'User-Agent': 'Mozilla/6.0'})
+    data = json.loads(urlopen(req).read())
+    image_url = data.get('urls').get('full')
+
+    hue = str(random.randint(0, 359)) + "deg"
+    saturation = random.randint(1, 100)/100
+    brightness = random.randint(1, 200)/100
+    # print(hue)
+    # print(saturation)
+    # print(brightness)
+    return render_template('random.html', link = 'url(' + image_url + ')', hue = hue, sat = saturation, bri = brightness)
 
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():
