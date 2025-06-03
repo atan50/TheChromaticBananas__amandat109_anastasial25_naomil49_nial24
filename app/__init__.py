@@ -73,7 +73,7 @@ def profile():
     if ('username' in session):
         user = session['username']
         color_info = db.get_color_info(user)
-        list = ["top", "bottom", "right", "left", "top right", 
+        list = ["top", "bottom", "right", "left", "top right",
                 "top left", "bottom right", "bottom left"]
         directions = ["", "", "", "", "", "", "", ""]
         directions[color_info[2]] = "checked"
@@ -85,9 +85,9 @@ def profile():
             color_info = db.get_color_info(user)
             directions = ["", "", "", "", "", "", "", ""]
             directions[to] = "checked"
-        return render_template("profile.html", logged_in = True, 
-                               username = user, c1 = color_info[0], 
-                               c2 = color_info[1], d = directions, 
+        return render_template("profile.html", logged_in = True,
+                               username = user, c1 = color_info[0],
+                               c2 = color_info[1], d = directions,
                                dir = list[color_info[2]])
     else:
         return redirect('/login')
@@ -128,6 +128,14 @@ def random_game():
     # print(saturation)
     # print(brightness)
     return render_template('random.html', link = 'url(' + image_url + ')', hue = hue, sat = saturation, bri = brightness)
+
+@app.route('/random/guess', methods=["POST"])
+def handle_adjustments():
+    hue = request.form["hue"]
+    saturation = request.form["saturation"]
+    brightness = request.form["brightness"]
+
+    return hue+" "+saturation+" "+brightness
 
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():
