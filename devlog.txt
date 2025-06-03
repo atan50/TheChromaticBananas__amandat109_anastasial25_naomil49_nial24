@@ -162,3 +162,6 @@ naomiL -- 2025-06-02 11:43
 - styling on profile
   - navbar
 - styling on login page
+
+anastasiaL -- 2025-06-03 00:01
+- finally got the random adjustments to work!
