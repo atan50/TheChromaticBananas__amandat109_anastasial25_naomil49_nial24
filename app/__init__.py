@@ -147,8 +147,8 @@ def random_game():
 
     if request.method == 'POST':
         h_guess = request.form['hue']
-        s_guess = request.form['sat']
-        b_guess = request.form['bri']
+        s_guess = request.form['saturation']
+        b_guess = request.form['brightness']
         total_diff = abs(hue - h_guess) + abs(saturation - s_guess) + abs(brightness - b_guess)
         if 'username' in session:
             user = session['username']
@@ -158,14 +158,6 @@ def random_game():
                                score = total_diff)
     return render_template('random.html', link = 'url(' + image_url + ')', 
                            hue = hue, sat = saturation, bri = brightness)
-
-@app.route('/random/guess', methods=["POST"])
-def handle_adjustments():
-    hue = request.form["hue"]
-    saturation = request.form["saturation"]
-    brightness = request.form["brightness"]
-
-    return hue+" "+saturation+" "+brightness
 
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():
