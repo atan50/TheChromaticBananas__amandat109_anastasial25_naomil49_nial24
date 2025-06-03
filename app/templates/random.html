@@ -46,13 +46,54 @@ P05: Color Theory for Dummies
 </div>
 
 <div class="parent">
-    <div class="imageContainer">
-        <img>
-    </div>
+  <div class="imageContainer">
+    <img>
+  </div>
 
-    <div class="imageContainer1">
-        <img>
-    </div>
+  <div class="imageContainer1">
+    <img>
+  </div>
+
+  <div>
+    <form action="/random/guess" method="POST">
+      Hue <input type="range" min="0" max="355" value="0" id="hue_slider" name="hue"> <p><span id="selected_hue"></span></p> <br>
+      Saturation <input type="range" min="1" max="100" value="1" id="sat_slider" name="saturation"> <p><span id="selected_sat"></span></p> <br>
+      Brightness <input type="range" min="1" max="100" value="1" id="br_slider" name="brightness"> <p><span id="selected_br"></span></p> <br>
+      <input class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 w-full" type="submit" name="adjustments" value="RandomAdjustments">
+    </form>
+  </div>
 </div>
+
+<script>
+  // hue
+  var hue_slider = document.getElementById("hue_slider");
+  var selected_hue = document.getElementById("selected_hue");
+  selected_hue.innerHTML = hue_slider.value;
+
+
+  hue_slider.oninput = function(){
+    selected_hue.innerHTML = this.value;
+  }
+
+  // saturation
+  var sat_slider = document.getElementById("sat_slider");
+  var selected_sat = document.getElementById("selected_sat");
+  selected_sat.innerHTML = sat_slider.value;
+
+
+  sat_slider.oninput = function(){
+    selected_sat.innerHTML = this.value;
+  }
+
+  // brightness
+  var br_slider = document.getElementById("br_slider");
+  var selected_br = document.getElementById("selected_br");
+  selected_br.innerHTML = br_slider.value;
+
+
+  br_slider.oninput = function(){
+    selected_br.innerHTML = this.value;
+  }
+</script>
 
 {% endblock %}

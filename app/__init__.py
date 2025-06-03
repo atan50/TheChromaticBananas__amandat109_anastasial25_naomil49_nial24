@@ -145,6 +145,14 @@ def random_game():
     # print(brightness)
     return render_template('random.html', link = 'url(' + image_url + ')', hue = hue, sat = saturation, bri = brightness)
 
+@app.route('/random/guess', methods=["POST"])
+def handle_adjustments():
+    hue = request.form["hue"]
+    saturation = request.form["saturation"]
+    brightness = request.form["brightness"]
+
+    return hue+" "+saturation+" "+brightness
+
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():
     session.pop('username', None)
