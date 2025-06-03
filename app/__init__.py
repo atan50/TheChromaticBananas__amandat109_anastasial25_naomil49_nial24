@@ -77,6 +77,7 @@ def profile():
                 "top left", "bottom right", "bottom left"]
         directions = ["", "", "", "", "", "", "", ""]
         directions[color_info[2]] = "checked"
+        scores = db.get_scores(user)
         if request.method == 'POST':
             color1 = request.form['color1']
             color2 = request.form['color2']
@@ -88,7 +89,7 @@ def profile():
         return render_template("profile.html", logged_in = True, 
                                username = user, c1 = color_info[0], 
                                c2 = color_info[1], d = directions, 
-                               dir = list[color_info[2]])
+                               dir = list[color_info[2]], scores = scores)
     else:
         return redirect('/login')
 
@@ -127,7 +128,20 @@ def random_game():
     # print(hue)
     # print(saturation)
     # print(brightness)
-    return render_template('random.html', link = 'url(' + image_url + ')', hue = hue, sat = saturation, bri = brightness)
+
+    if request.method == 'POST':
+        h_guess = request.form['hue']
+        s_guess = request.form['sat']
+        b_guess = request.form['bri']
+        total_diff = abs(hue - h_guess) + abs(saturation - s_guess) + abs(brightness - b_guess)
+        if 'username' in session:
+            user = session['username']
+            db.update_scores(user, total_diff)
+        return render_template('random.html', link = 'url(' + image_url + ')', 
+                               hue = hue, sat = saturation, bri = brightness,
+                               score = total_diff)
+    return render_template('random.html', link = 'url(' + image_url + ')', 
+                           hue = hue, sat = saturation, bri = brightness)
 
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():

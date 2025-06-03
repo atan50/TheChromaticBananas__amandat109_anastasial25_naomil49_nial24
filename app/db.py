@@ -30,7 +30,8 @@ def insert_user_data(username, password):
         'password_hash': hash,
         'color1': '#33ccff',
         'color2': '#ff99cc',
-        'to': 0
+        'to': 0,
+        'scores': []
     }
     user_collection.insert_one(user_dict)
 
@@ -57,6 +58,18 @@ def update_color_info(username, color1, color2, to):
     user_collection.update_one( 
         {'username': username},
         {'$set': {'color1': color1, 'color2': color2, 'to': to}}
+        )
+
+def get_scores(username):
+    for user_document in user_collection.find({'username': username}):
+        scores = user_document['scores']
+    return scores
+
+def update_scores(username, score):
+    new_scores = get_scores(username).append(score)
+    user_collection.update_one( 
+        {'username': username},
+        {'$set': {'scores': scores}}
         )
 
 def clear_collection(collection_name):
