@@ -12,76 +12,47 @@ P05: Color Theory for Dummies
 {% block content %}
 
 <style>
-
 :root {
---link: {{link}};
+    --link: {{link}};
+    --hue: {{hue}};
+    --sat: {{sat}};
+    --bri: {{bri}};
+}
+.parent {
+    display: flex;
 }
 .imageContainer{
-  width: 50%;
-}
-.imageContainer1{
-  width: 50%;
-  filter: saturate(50%);
-}
-
-main {
-    background:url(var(--link));
+    background: var(--link);
     width: 300px;
     height: 400px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+.imageContainer1{
+    background: var(--link);
+    width: 300px;
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: hue-rotate(var(--hue)) saturate(var(--sat)) brightness(var(--bri));
+}
 </style>
 
-<!--
-<div class="imageContainer">
-  <a id="imageLink" href="#">
-    <img alt="" id="unsplashImage" />
-  </a>
+<div>
+    <h1 class="text-6xl"> Random Adjustments </h1><br>
+    <p class="italic"> Guess the hue, saturation, and brightness adjustments made to this random image! </p>
 </div>
 
-<p> hello </p>
+<div class="parent">
+    <div class="imageContainer">
+        <img>
+    </div>
 
-<div class="imageContainer1">
-  <a id="imageLink1" href="#">
-    <img alt="" id="unsplashImage1" />
-  </a>
+    <div class="imageContainer1">
+        <img>
+    </div>
 </div>
--->
-
-
-
-<main class="image__wrapper">
-  <img src="" alt="" width="" >
-</main>
-
-
-<main class="image__wrapper">
-  <img src="" alt="" width="" >
-</main>
-
-<script>
-var clientID = "uWM9sQ5gmxuIo55YD6WvP2wa6w0gCi3gUeLc6qAY_T4";
-var endpoint = `https://api.unsplash.com/photos/random/?client_id=${clientID}`;
-
-var imageElement = document.querySelector("#unsplashImage");
-var imageLink = document.querySelector("#imageLink");
-var creator = document.querySelector("#creator");
-
-fetch(endpoint)
-.then((response) => response.json())
-.then((jsonData) => {
-    imageElement.src = jsonData.urls.full;
-    imageLink.setAttribute("href", jsonData.links.html);
-    creator.innerText = jsonData.user.name;
-    creator.setAttribute("href", jsonData.user.portfolio_url);
-})
-.catch((error) => {
-    console.error("Error: " + error);
-});
-
-var r = document.querySelector(':root');
-</script>
 
 {% endblock %}
