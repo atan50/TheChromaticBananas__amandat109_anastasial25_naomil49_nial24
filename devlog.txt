@@ -98,7 +98,7 @@ Application of Python style:
 Which aspects of the style guide were most applicable to your codebase?
 - Limit all lines to a maximum of 79 characters
   --> __init__.py lines 71 and 83 are now multiple lines
-- Order and position of imports: 
+- Order and position of imports:
   - Imports should be grouped in the following order:
     1. Standard library imports.
     2. Related third party imports.
@@ -165,3 +165,7 @@ naomiL -- 2025-06-02 11:43
 
 anastasiaL -- 2025-06-03 00:01
 - finally got the random adjustments to work!
+
+naomi: -- 2025=06-03 11:43
+- added range sliders (hue, sat, brightness)
+- javascript to reflect changing values -> new file
