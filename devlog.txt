@@ -166,6 +166,11 @@ naomiL -- 2025-06-02 11:43
 anastasiaL -- 2025-06-03 00:01
 - finally got the random adjustments to work!
 
-naomi: -- 2025=06-03 11:43
+naomi: -- 2025-06-03 11:43
 - added range sliders (hue, sat, brightness)
 - javascript to reflect changing values -> new file
+
+anastasiaL -- 2025-06-03 11:47
+- edited sliders and form action
+- updated database to include scores
+- debugging the random adjustments game

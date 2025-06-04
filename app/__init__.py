@@ -138,26 +138,32 @@ def random_game():
     data = json.loads(urlopen(req).read())
     image_url = data.get('urls').get('full')
 
-    hue = str(random.randint(0, 359)) + "deg"
+    hue = random.randint(0, 359)
+    hue_str = str(hue) + "deg"
     saturation = random.randint(1, 100)/100
     brightness = random.randint(1, 200)/100
     # print(hue)
     # print(saturation)
     # print(brightness)
+    h_guess = 0
+    s_guess = 1
+    b_guess = 1
 
     if request.method == 'POST':
-        h_guess = request.form['hue']
-        s_guess = request.form['saturation']
-        b_guess = request.form['brightness']
-        total_diff = abs(hue - h_guess) + abs(saturation - s_guess) + abs(brightness - b_guess)
+        h_guess = int(request.form['hue'])
+        s_guess = int(request.form['saturation'])
+        b_guess = int(request.form['brightness'])
+        total_diff = min(abs(hue - h_guess), 360 - abs(hue - h_guess)) + abs(saturation - s_guess) + abs(brightness - b_guess)
         if 'username' in session:
             user = session['username']
             db.update_scores(user, total_diff)
         return render_template('random.html', link = 'url(' + image_url + ')', 
-                               hue = hue, sat = saturation, bri = brightness,
+                               hue = hue_str, sat = saturation, bri = brightness, 
+                               h_g = h_guess, s_g = s_guess, b_g = b_guess,
                                score = total_diff)
     return render_template('random.html', link = 'url(' + image_url + ')', 
-                           hue = hue, sat = saturation, bri = brightness)
+                           hue = hue_str, sat = saturation, bri = brightness,
+                           h_g = h_guess, s_g = s_guess, b_g = b_guess)
 
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():
