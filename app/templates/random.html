@@ -21,6 +21,10 @@ P05: Color Theory for Dummies
 .parent {
     display: flex;
 }
+.parent1 {
+    display: flex;
+    justify-content: space-evenly;
+}
 .imageContainer{
     background: var(--link);
     width: 300px;
@@ -42,25 +46,45 @@ P05: Color Theory for Dummies
 
 <div>
     <h1 class="text-6xl"> Random Adjustments </h1><br>
-    <p class="italic"> Guess the hue, saturation, and brightness adjustments made to this random image! </p>
+    <p class="italic"> Guess the random hue, saturation, and brightness adjustments made to this random image. Try to get the lowest score! </p>
+    <p class="italic"> Please wait for both images to load. </p>
 </div>
 
-<div class="parent">
-  <div class="imageContainer">
-    <img>
-  </div>
+<div class="parent1">
+  <div class="parent">
+    <div class="imageContainer">
+        <img>
+    </div>
 
-  <div class="imageContainer1">
-    <img>
+    <div class="imageContainer1">
+        <img>
+    </div>
   </div>
-
   <div>
     <form action="/random" method="POST">
-      Hue <input type="range" min="0" max="359" value="{{h_g}}" id="hue_slider" name="hue"> <p><span id="selected_hue"></span></p> <br>
-      Saturation <input type="range" min="50" max="150" value="{{h_s}}" id="sat_slider" name="saturation"> <p><span id="selected_sat"></span></p> <br>
-      Brightness <input type="range" min="50" max="150" value="{{h_b}}" id="br_slider" name="brightness"> <p><span id="selected_br"></span></p> <br>
-      <input class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 w-full" type="submit" name="adjustments" value="Submit">
+        <label for="hue_slider">Hue Rotation (°)</label>
+        <input type="range" min="0" max="359" value="{{h_g}}" id="hue_slider" name="hue"> <p><span id="selected_hue"></span></p> <br>
+        <label for="sat_slider">Saturation (%)</label>
+        <input type="range" min="50" max="150" value="{{s_g}}" id="sat_slider" name="saturation"> <p><span id="selected_sat"></span></p> <br>
+        <label for="br_slider">Brightness (%)</label>
+        <input type="range" min="50" max="150" value="{{b_g}}" id="br_slider" name="brightness"> <p><span id="selected_br"></span></p> <br>
+        {% if not score %}
+        <input class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 w-full" type="submit" name="adjustments" value="Submit">
+        {% endif %}
     </form>
+    {% if score %}
+    Correct answers: <br>
+    Hue rotation {{hue_num}}° <br>
+    Saturation {{sat}}% <br>
+    Brightness {{bri}}%
+    <br><br>
+    Score: {{score}}
+    <br>
+    <br>
+    <form>
+        <input class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 w-full" type="submit" name="again" value="Play again">
+    </form>
+    {% endif %}
   </div>
 </div>
 

@@ -130,39 +130,55 @@ def handle_guess():
     result = "Correct!" if guess == correct else "Wrong :("
     return f"<h3>{result}</h3><p>Your guess: {guess} | Answer: {correct}</p><a href='/color'>Play Again</a>"
 
+key = 'uWM9sQ5gmxuIo55YD6WvP2wa6w0gCi3gUeLc6qAY_T4'
+endpoint = 'https://api.unsplash.com/photos/random/?client_id=' + key
+req = Request(url=endpoint, headers={'User-Agent': 'Mozilla/6.0'})
+data = json.loads(urlopen(req).read())
+image_url = data.get('urls').get('full')
+
+hue = random.randint(0, 359)
+hue_str = str(hue) + "deg"
+saturation = random.randint(50, 150)
+brightness = random.randint(50, 150)
+# print(hue)
+# print(saturation)
+# print(brightness)
+
 @app.route('/random', methods = ['GET', 'POST'])
 def random_game():
-    key = 'uWM9sQ5gmxuIo55YD6WvP2wa6w0gCi3gUeLc6qAY_T4'
-    endpoint = 'https://api.unsplash.com/photos/random/?client_id=' + key
-    req = Request(url=endpoint, headers={'User-Agent': 'Mozilla/6.0'})
-    data = json.loads(urlopen(req).read())
-    image_url = data.get('urls').get('full')
-
-    hue = random.randint(0, 359)
-    hue_str = str(hue) + "deg"
-    saturation = random.randint(50, 150)
-    brightness = random.randint(50, 150)
-    # print(hue)
-    # print(saturation)
-    # print(brightness)
-    h_guess = 0
-    s_guess = 100
-    b_guess = 100
-
     if request.method == 'POST':
         h_guess = int(request.form['hue'])
         s_guess = int(request.form['saturation'])
         b_guess = int(request.form['brightness'])
-        total_diff = min(abs(hue - h_guess), 360 - abs(hue - h_guess)) + abs(saturation - s_guess) + abs(brightness - b_guess)
+        image_url = globals()['image_url']
+        hue = globals()['hue']
+        hue_str = globals()['hue_str']
+        saturation = globals()['saturation']
+        brightness = globals()['brightness']
+        h_diff = float(min(abs(hue - h_guess), 360 - abs(hue - h_guess)))/180
+        s_diff = float(abs(saturation - s_guess))/100
+        b_diff = float(abs(brightness - b_guess))/100
+        total_diff = h_diff + s_diff + b_diff
         if 'username' in session:
             user = session['username']
             db.update_scores(user, total_diff)
         return render_template('random.html', link = 'url(' + image_url + ')', 
-                               hue = hue_str, sat = saturation, bri = brightness, 
+                               hue = hue_str, hue_num = hue, sat = saturation, bri = brightness, 
                                h_g = h_guess, s_g = s_guess, b_g = b_guess,
                                score = total_diff)
-    return render_template('random.html', link = 'url(' + image_url + ')', 
-                           hue = hue_str, sat = saturation, bri = brightness,
+    req = Request(url=endpoint, headers={'User-Agent': 'Mozilla/6.0'})
+    data = json.loads(urlopen(req).read())
+    globals()['image_url'] = data.get('urls').get('full')
+
+    globals()['hue'] = random.randint(0, 359)
+    globals()['hue_str'] = str(globals()['hue']) + "deg"
+    globals()['saturation'] = random.randint(50, 150)
+    globals()['brightness'] = random.randint(50, 150)
+    h_guess = 0
+    s_guess = 100
+    b_guess = 100
+    return render_template('random.html', link = 'url(' + globals()['image_url'] + ')', 
+                           hue = globals()['hue_str'], sat = globals()['saturation'], bri = globals()['brightness'],
                            h_g = h_guess, s_g = s_guess, b_g = b_guess)
 
 @app.route('/logout', methods = ['GET', 'POST'])
