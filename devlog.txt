@@ -174,3 +174,6 @@ anastasiaL -- 2025-06-03 11:47
 - edited sliders and form action
 - updated database to include scores
 - debugging the random adjustments game
+
+anastasiaL -- 2025-06-04 11:47
+- debugging and making changes to the random adjustments game

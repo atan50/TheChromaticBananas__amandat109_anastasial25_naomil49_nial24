@@ -15,8 +15,8 @@ P05: Color Theory for Dummies
 :root {
     --link: {{link}};
     --hue: {{hue}};
-    --sat: {{sat}};
-    --bri: {{bri}};
+    --sat: {{sat/100}};
+    --bri: {{bri/100}};
 }
 .parent {
     display: flex;
@@ -56,9 +56,9 @@ P05: Color Theory for Dummies
 
   <div>
     <form action="/random" method="POST">
-      Hue <input type="range" min="0" max="355" value={{h_g}} id="hue_slider" name="hue"> <p><span id="selected_hue"></span></p> <br>
-      Saturation <input type="range" min="1" max="100" value={{h_s}} id="sat_slider" name="saturation"> <p><span id="selected_sat"></span></p> <br>
-      Brightness <input type="range" min="1" max="100" value={{h_b}} id="br_slider" name="brightness"> <p><span id="selected_br"></span></p> <br>
+      Hue <input type="range" min="0" max="359" value="{{h_g}}" id="hue_slider" name="hue"> <p><span id="selected_hue"></span></p> <br>
+      Saturation <input type="range" min="50" max="150" value="{{h_s}}" id="sat_slider" name="saturation"> <p><span id="selected_sat"></span></p> <br>
+      Brightness <input type="range" min="50" max="150" value="{{h_b}}" id="br_slider" name="brightness"> <p><span id="selected_br"></span></p> <br>
       <input class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 w-full" type="submit" name="adjustments" value="Submit">
     </form>
   </div>

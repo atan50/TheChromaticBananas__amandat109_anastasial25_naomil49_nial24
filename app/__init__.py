@@ -140,14 +140,14 @@ def random_game():
 
     hue = random.randint(0, 359)
     hue_str = str(hue) + "deg"
-    saturation = random.randint(1, 100)/100
-    brightness = random.randint(1, 200)/100
+    saturation = random.randint(50, 150)
+    brightness = random.randint(50, 150)
     # print(hue)
     # print(saturation)
     # print(brightness)
     h_guess = 0
-    s_guess = 1
-    b_guess = 1
+    s_guess = 100
+    b_guess = 100
 
     if request.method == 'POST':
         h_guess = int(request.form['hue'])
