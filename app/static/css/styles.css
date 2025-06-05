@@ -11,12 +11,13 @@ body
 }
 
 footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   right: 0;
   color: #000000;
   text-align: right;
   padding-right: 1rem;
+  margin: 75px 0px 25px;
 }
 
 *{
