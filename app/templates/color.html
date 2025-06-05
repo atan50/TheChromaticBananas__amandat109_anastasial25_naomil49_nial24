@@ -77,6 +77,12 @@ P05: Color Theory for Dummies
   <p class="italic"> Guess if the squares in the center are the same color or not! </p>
 </div>
 
+<form class="flex flex-row justify-center space-x-4" method="POST" action="/color/guess">
+  <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8" name="guess" value="same">same</button>
+  <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8" name="guess" value="different">different</button>
+  <input type="hidden" name="correct" value="{{ 'same' if same else 'different' }}">
+</form>
+
 <div class="h-auto mx-auto">
   <div class="anchor"> </div>
   <div class="square" id = "square-left-inside">  </div>
@@ -85,9 +91,4 @@ P05: Color Theory for Dummies
   <div class="square" id = "square-right-outside">  </div>
 </div>
 
-<form method="POST" action="/color/guess">
-    <button class="guess-btn" name="guess" value="same">same</button>
-    <button class="guess-btn" name="guess" value="different">different</button>
-    <input type="hidden" name="correct" value="{{ 'same' if same else 'different' }}">
-</form>
 {% endblock %}
