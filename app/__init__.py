@@ -14,8 +14,11 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from flask import Flask, render_template, request, redirect, session, flash
 from flask_assets import Environment, Bundle
-import db
-from color import *
+# import db
+# from color import *
+from . import db
+from .color import *
+
 
 app = Flask(__name__)
 assets = Environment(app)
@@ -109,33 +112,48 @@ def profile():
     else:
         return redirect('/login')
 
+
 @app.route('/color', methods=['GET', 'POST'])
 def color():
-    # if request.method == 'POST':
-    #     guess = request.form["guess"]
-    #     correct = request.form["correct"]
+    # message = None
+    if request.method == 'POST':
+        # colors
+        inner_left = request.form.get("inner_left")
+        inner_right = request.form.get("inner_right")
+        outer_left = request.form.get("outer_left")
+        outer_right = request.form.get("outer_right")
+        correct = request.form.get("correct")
+        guess = request.form.get("guess")
+        guessed = True
 
-        # result = "Correct!" if guess == correct else "Wrong :("
-        # return f"<h3>{result}</h3><p>Your guess: {guess} | Answer: {correct}</p><a href='/color'>Play Again</a>"
+        if guess == correct:
+            flash("Correct! Yay :D", "correct")
+        else:
+            flash(f"Wrong :( The correct answer was {correct}.", "wrong")
+
+        return render_template(
+            "color.html",
+            inner_left=inner_left,
+            inner_right=inner_right,
+            outer_left=outer_left,
+            outer_right=outer_right,
+            same=(correct == "same"),
+            guessed=True
+        )
 
     colors = color_randomizer()
-    print(colors)
+    correct = 'same' if colors['same'] else 'different'
+
     return render_template(
         "color.html",
         inner_left=colors["inner_left"],
         inner_right=colors["inner_right"],
         outer_left=colors["outer_left"],
         outer_right=colors["outer_right"],
-        same=colors["same"]
+        same=colors["same"],
+        correct=correct,
+        guessed=False
     )
-
-@app.route('/color/guess', methods=["POST"])
-def handle_guess():
-    guess = request.form["guess"]
-    correct = request.form["correct"]
-
-    result = "Correct!" if guess == correct else "Wrong :("
-    return f"<h3>{result}</h3><p>Your guess: {guess} | Answer: {correct}</p><a href='/color'>Play Again</a>"
 
 
 key = 'uWM9sQ5gmxuIo55YD6WvP2wa6w0gCi3gUeLc6qAY_T4'

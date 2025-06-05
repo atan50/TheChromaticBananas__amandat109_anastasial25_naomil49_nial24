@@ -61,6 +61,18 @@ P05: Color Theory for Dummies
 
 {% extends 'base.html' %}
 
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
+      {% for category, message in messages %}
+        <li class="flash {{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
 {% block content %}
 
 <!-- heading -->
@@ -70,11 +82,21 @@ P05: Color Theory for Dummies
 </div>
 
 <!-- form -->
-<div class="flex flex-row justify-center">
+<form method="POST" class="flex flex-row justify-center">
+
+  <input type="hidden" name="inner_left" value="{{ inner_left }}">
+  <input type="hidden" name="inner_right" value="{{ inner_right }}">
+  <input type="hidden" name="outer_left" value="{{ outer_left }}">
+  <input type="hidden" name="outer_right" value="{{ outer_right }}">
+  <input type="hidden" name="correct" value="{{ 'same' if same else 'different' }}">
+
   <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8 mx-2" id="g1" name="guess" value="same" onclick="animatecolor()">same</button>
   <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8 mx-2" id="g2" name="guess" value="different" onclick="animatecolor()">different</button>
+  <!-- <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8 mx-2" id="g1" name="guess" value="same" onclick="animatecolor()">same</button>
+  <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8 mx-2" id="g2" name="guess" value="different" onclick="animatecolor()">different</button> -->
   <!-- <input type="hidden" name="correct" value="{{ 'same' if same else 'different' }}"> -->
-</div>
+</form>
+
 
 <div class="hidden fixed top-1/3 right-1/3 text-center object-center justify-center items-center z-50 bg-neutral-200/95 rounded-2xl outline-offset-8 p-10 mx-2 h-auto w-1/3" id="popup">
   <a href="/color"> play again </a><br>
@@ -88,38 +110,69 @@ P05: Color Theory for Dummies
 <!-- colors -->
 <div class="flex flex-row mx-auto" style="height: 500px; position:relative;"> 
   <!-- <div class="square" style="height: 200px; width:200px;"></div> -->
-  <div class="square" id = "square-left-inside">  </div>
+  <!-- <div class="square" id = "square-left-inside">  </div>
   <div class="square" id = "square-left-outside">  </div>
   <div class="square" id = "square-right-outside">  </div>
-  <div class="square" id = "square-right-inside"> </div>
+  <div class="square" id = "square-right-inside"> </div> -->
+  <div class="square" id="square-left-inside" style="left: 15%;"></div>
+  <div class="square" id="square-left-outside"></div>
+  <div class="square" id="square-right-outside"></div>
+  <div class="square" id="square-right-inside" style="right: 15%;"></div>
+</div>
+
+<div id="popup" class="...">
+  <a href="/color"> play again </a><br>
 </div>
 
 <script>
-  function animatecolor(){
-    document.getElementById("popup").classList.remove("hidden");
-    document.getElementById("g1").classList.add("invisible");
-    document.getElementById("g2").classList.add("invisible");
+  document.addEventListener("DOMContentLoaded", () => {
+    const guessed = {{ 'true' if guessed else 'false' }};
 
-    // item.classList.remove("hidden");
-    console.log('popup');
+    if (guessed) {
+      const leftInside = document.getElementById("square-left-inside");
+      const rightInside = document.getElementById("square-right-inside");
 
-    const elem = document.getElementById("square-left-inside");
-    var right = document.getElementById("square-right-inside");
+      let leftPos = 20; 
+      let rightPos = 20; 
 
-    let id = null; 
-    let pos = 0;
-    clearInterval(id);
-    id = setInterval(frame, 5);
-    function frame() {
-      // console.log(pos)
-      if (pos == 350) {
-        clearInterval(id);
-      } else {
-        pos++; 
-        elem.style.right = pos + "px"; 
-        console.log(elem.style.right)
-      }
+      const interval = setInterval(() => {
+        if (leftPos >= 30 || rightPos >= 30) {
+          clearInterval(interval);
+        } else {
+          leftPos += 0.5;
+          rightPos += 0.5;
+          leftInside.style.left = leftPos + "%";
+          rightInside.style.right = rightPos + "%";
+        }
+      }, 25);
     }
+  });
+
+  // function animatecolor(){
+  //   document.getElementById("popup").classList.remove("hidden");
+  //   document.getElementById("g1").classList.add("invisible");
+  //   document.getElementById("g2").classList.add("invisible");
+
+  //   // item.classList.remove("hidden");
+  //   console.log('popup');
+
+  //   const elem = document.getElementById("square-left-inside");
+  //   var right = document.getElementById("square-right-inside");
+
+  //   let id = null; 
+  //   let pos = 0;
+  //   clearInterval(id);
+  //   id = setInterval(frame, 5);
+  //   function frame() {
+  //     // console.log(pos)
+  //     if (pos == 350) {
+  //       clearInterval(id);
+  //     } else {
+  //       pos++; 
+  //       elem.style.right = pos + "px"; 
+  //       console.log(elem.style.right)
+  //     }
+  //   }
     // const tocenter = [
     //   { transform: "translateX(50px)"},
     // ]
@@ -130,7 +183,6 @@ P05: Color Theory for Dummies
     // left.style.left =  `${event.offsetX}px`
     // left.animate(tocenter, centertime);
     // right.animate(tocenter, centertime);
-  }
 </script>
 
 {% endblock %}

@@ -13,43 +13,54 @@ import random
 def rgb(c):
         return f"rgb({c[0]}, {c[1]}, {c[2]})"
 
+def color_distance(c1, c2):
+    total = 0
+    for i in range(len(c1)):
+        diff = c1[i] - c2[i]
+        total += diff * diff
+    return total ** 0.5
+
 def color_randomizer():
-    base_value = [random.randint(0, 255) for i in range(3)]
-    # small chance you get white which is maybe bad? if website bkgd is white
-    variation = random.randint(-15, 15)
+    base_value = [random.randint(20, 235) for _ in range(3)]
+    negate = random.choice([-1, 1])
+    variation = random.randint(5, 10) * negate
 
     # outer squares
-    outer_left = [random.randint(0, 255) for i in range(3)]
-    outer_right = [random.randint(0, 255) for i in range(3)]
+    outer_left = [random.randint(1, 255) for _ in range(3)]
+    outer_right = [random.randint(1, 255) for _ in range(3)]
 
     # inner squares
     color1 = []
     for c in base_value:
         new_value = c + variation
-
-        if new_value < 0:
-            new_value = 0
+        if new_value < 1:
+            new_value = 1
         elif new_value > 255:
             new_value = 255
-
         color1.append(new_value)
-    
+
     same = random.choice([True, False])
 
     if same:
         color2 = color1
     else:
-        color2 = []
-        for c in base_value:
-            variation = random.randint(-15, 15)
-            new_value = c + variation
+        #  change
+        diff = 10
+        while True:
+            color2 = []
+            for c in base_value:
+                neg = random.choice([-1, 1])
+                var = random.randint(5, 10) * neg
+                new_value = c + var
+                if new_value < 1:
+                    new_value = 1
+                elif new_value > 255:
+                    new_value = 255
+                color2.append(new_value)
 
-            if new_value < 0:
-                new_value = 0
-            elif new_value > 255:
-                new_value = 255
-
-            color2.append(new_value)
+            dist = color_distance(color1, color2)
+            if dist >= diff:
+                break
 
     return {
         "inner_left": rgb(color1),
