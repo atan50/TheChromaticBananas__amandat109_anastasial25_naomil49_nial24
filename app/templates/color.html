@@ -10,24 +10,27 @@ P05: Color Theory for Dummies
   <title>Color Viewing</title>
   <style>
     .square {
-        position: relative;
+        position: absolute;
     }
 
     #square-left-inside {
-      left: 25%;
-      top:150px;
+      position:absolute;
+      left: 23%;
+      top: 150px;
       height: 200px;
       width: 200px;
       background-color: {{ inner_left }};
       z-index: 2;
     }
     #square-left-outside {
+      left:12.5%;
         height: 500px;
         width: 500px;
         background-color: {{ outer_left }};
         z-index: 1;
     }
     #square-right-inside {
+      position:absolute;
         right: 25%;
         top: 150px;
         height: 200px;
@@ -36,6 +39,7 @@ P05: Color Theory for Dummies
         z-index: 2;
     }
     #square-right-outside {
+      left: 50%;
         height: 500px;
         width: 500px;
         background-color: {{ outer_right }};
@@ -56,8 +60,6 @@ P05: Color Theory for Dummies
   </style>
 </head>
 
-<!DOCTYPE html>
-
 {% extends 'base.html' %}
 
 {% block content %}
@@ -68,19 +70,60 @@ P05: Color Theory for Dummies
   <p class="italic"> Guess if the squares in the center are the same color or not! </p>
 </div>
 
-<form class="flex flex-row justify-center space-x-4" method="POST" action="/color/guess">
-  <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8" name="guess" value="same">same</button>
-  <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8" name="guess" value="different">different</button>
-  <input type="hidden" name="correct" value="{{ 'same' if same else 'different' }}">
-</form>
+<!-- form -->
+<div class="flex flex-row justify-center space-x-4">
+  <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8" name="guess" value="same" onclick="animatecolor()">same</button>
+  <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8" name="guess" value="different" onclick="animatecolor()">different</button>
+  <!-- <input type="hidden" name="correct" value="{{ 'same' if same else 'different' }}"> -->
+</div>
 
-<div class="flex flex-row"> 
-  <!-- style="height: 500px; background-color: red;"> -->
-   
+<div class="visibility: hidden" id="popup">
+  Hello! POPUP
+</div>
+
+<!-- colors -->
+<div class="flex flex-row" style="height: 500px; position:relative;"> 
+  <!-- <div class="square" style="height: 200px; width:200px;"></div> -->
   <div class="square" id = "square-left-inside">  </div>
   <div class="square" id = "square-left-outside">  </div>
   <div class="square" id = "square-right-outside">  </div>
   <div class="square" id = "square-right-inside"> </div>
 </div>
+
+<script>
+  function animatecolor(){
+    var item = document.getElementById("popup");
+    item.classList.remove("hidden");
+    console.log('popup');
+
+    const elem = document.getElementById("square-left-inside");
+    var right = document.getElementById("square-right-inside");
+
+    let id = null; 
+    let pos = 0;
+    clearInterval(id);
+    id = setInterval(frame, 5);
+    function frame() {
+      // console.log(pos)
+      if (pos == 350) {
+        clearInterval(id);
+      } else {
+        pos++; 
+        elem.style.right = pos + "px"; 
+        console.log(elem.style.right)
+      }
+    }
+    // const tocenter = [
+    //   { transform: "translateX(50px)"},
+    // ]
+    // const centertime  ={
+    //   duration: 1000,
+    //   iterations: 1,
+    // };
+    // left.style.left =  `${event.offsetX}px`
+    // left.animate(tocenter, centertime);
+    // right.animate(tocenter, centertime);
+  }
+</script>
 
 {% endblock %}

@@ -111,6 +111,13 @@ def profile():
 
 @app.route('/color', methods=['GET', 'POST'])
 def color():
+    # if request.method == 'POST':
+    #     guess = request.form["guess"]
+    #     correct = request.form["correct"]
+
+        # result = "Correct!" if guess == correct else "Wrong :("
+        # return f"<h3>{result}</h3><p>Your guess: {guess} | Answer: {correct}</p><a href='/color'>Play Again</a>"
+
     colors = color_randomizer()
     print(colors)
     return render_template(
@@ -129,6 +136,7 @@ def handle_guess():
 
     result = "Correct!" if guess == correct else "Wrong :("
     return f"<h3>{result}</h3><p>Your guess: {guess} | Answer: {correct}</p><a href='/color'>Play Again</a>"
+
 
 key = 'uWM9sQ5gmxuIo55YD6WvP2wa6w0gCi3gUeLc6qAY_T4'
 endpoint = 'https://api.unsplash.com/photos/random/?client_id=' + key
