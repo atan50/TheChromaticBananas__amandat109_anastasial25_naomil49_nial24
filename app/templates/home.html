@@ -9,7 +9,19 @@ P05: Color Theory for Dummies
 <html>
 <head>
   <title>Home</title>
+  <link rel="stylesheet" href="/static/css/carousel.css">
 </head>
+
+<style>
+  .block{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .text{
+    width: 50%;
+  }
+</style>
 
 {% extends 'base.html' %}
 {% block content %}
@@ -27,11 +39,12 @@ P05: Color Theory for Dummies
   </p>
 </div>
 
-<div class="w-1/2 flex flex-col space-y-8">
+<div class="flex flex-col space-y-8">
 
-  <!-- What is Color Theory -->
-  <div>
-    <h2 class="text-4xl">What is Color Theory?</h2>
+<!-- What is Color Theory -->
+<h2 class="text-4xl">What is Color Theory?</h2>
+<div>
+  <div class="text">
     <p>
       Color Theory is the study of how colors interact, are perceived, and evoke emotions.
       Artists use color theory to make intentional choices in their works, whether that be in crafting form, representing light, or expressing mood.
@@ -42,88 +55,124 @@ P05: Color Theory for Dummies
       Some other aspects include mixing, schemes, and psychology.
     </p>
   </div>
+</div>
 
-  <!-- Defining Color -->
-  <div>
-    <h2 class="text-4xl">Defining Color</h2>
+<!-- Defining Color -->
+<h2 class="text-4xl">Defining Color</h2>
+<div class="flex flex-row">
+
+  <div class="text">
     <p>Hue, saturation, and brightness are the three primary ways to describe colors.</p>
     <p>
-      Hue is the “color” of colors. It’s what distinguishes blue from red. It’s probably the first thing that comes to mind when you’re asked to imagine two different colors.
+      <b>Hue</b> is the “color” of colors. It’s what distinguishes blue from red. It’s probably the first thing that comes to mind when you’re asked to imagine two different colors.
     </p>
-    <img src="https://public-images.interaction-design.org/tags/VIZ-02-Hue.jpg" alt="Hue Example" />
-
     <p>
-      Saturation measures the intensity/purity of a color. The more saturated a color is, the more vivid it appears to be.
-      A less saturated color will appear to be more muted and grey.
-      For example, crimson would be a more saturated red, while brick would be a more desaturated red.
+    <b>Saturation</b> measures the intensity/purity of a color. The more saturated a color is, the more vivid it appears to be.
+    A less saturated color will appear to be more muted and grey.
+    For example, crimson would be a more saturated red, while brick would be a more desaturated red.
     </p>
-    <img src="https://public-images.interaction-design.org/tags/VIZ-02-Saturation.jpg" alt="Saturation Example" />
-
     <p>
-      Brightness refers to the lightness or darkness of a color. Think of the typical greyscale, where colors range from a lighter white to grey to a darker black.
-      When we add white to a color, we end up with a tint of that color. When black is added, we get a shade.
-      Brightness may sometimes be referred to as "Value."
+    <b>Brightness</b> refers to the lightness or darkness of a color. Think of the typical greyscale, where colors range from a lighter white to grey to a darker black.
+    When we add white to a color, we end up with a tint of that color. When black is added, we get a shade.
+    Brightness may sometimes be referred to as "Value."
     </p>
-    <img src="https://public-images.interaction-design.org/tags/VIZ-02-Value.jpg" alt="Brightness/Value Example" />
   </div>
 
-  <!-- Color Constancy -->
+  <!-- carousel -->
   <div>
-    <h2 class="text-4xl">Color Constancy</h2>
+    <div class="absolute">
+      <div id="carousel" class="relative">
+    
+          <!-- images -->
+          <div class="slides fade">
+            <img src="https://public-images.interaction-design.org/tags/VIZ-02-Hue.jpg" alt="Hue Example" />
+          </div>
+          <div class="slides fade">
+            <img src="https://public-images.interaction-design.org/tags/VIZ-02-Saturation.jpg" alt="Saturation Example" />
+          </div>
+          <div class="slides fade">
+            <img src="https://public-images.interaction-design.org/tags/VIZ-02-Value.jpg" alt="Brightness/Value Example" />
+          </div>
+    
+          <!-- buttons -->
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <img src="https://upload.wikimedia.org/wikipedia/en/2/21/The_dress_blueblackwhitegold.jpg" alt="The Dress" />
-    <p>
-      What color do you see this dress as? White and Gold or Blue and Black?
-      It's confusing how people can perceive the dress so differently, and color constancy helps explain this strange phenomenon.
-    </p>
-    <p>
-      Color is informed by its context; it is relative to all the colors around it.
-      Color constancy is the brain’s effort to recognize a familiar object as a consistent color regardless of the light that is reflected off it.
-    </p>
-    <br>
-    <p>
-      For example, in this image, we can perceive the couch to be a white/beige despite the fact that the image's rgb value there is blue:
-    </p>
-    <img src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/108/posts/31477/image/5-problems-with-color-theory-1-1.jpg" alt="Blue couch color illusion" />
-    <div class="square" id="couch">#c9e6fd</div>
+  <!-- Color Constancy -->    
+  <h2 class="text-4xl">Color Constancy</h2>
+  <div>
+    <div class="flex flex-row">
+      <p class="w-1/2">
+        What color do you see this dress as? White and Gold or Blue and Black?
+        It's confusing how people can perceive the dress so differently, and color constancy helps explain this strange phenomenon.
+        <br>Color is informed by its context; it is relative to all the colors around it.
+        Color constancy is the brain’s effort to recognize a familiar object as a consistent color regardless of the light that is reflected off it.
+      </p>
+      <div class="mx-auto">
+        <img src="https://upload.wikimedia.org/wikipedia/en/2/21/The_dress_blueblackwhitegold.jpg" alt="The Dress" />
+      </div>
+    </div>
 
-    <p>
-      This image demonstrates how our eyes will "subtract" the lighting of the situation in order to identify the actual color of the object.
-    </p>
-    <img src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/108/posts/31477/image/5-problems-with-color-theory-2-2.png" alt="Lighting subtraction example" />
+    <div class="flex flex-row">
+      <p class="w-1/2">
+        For example, in this image, we can perceive the couch to be a white/beige despite the fact that the image's rgb value there is blue:
+      </p>
+      <div class="w-1/2">
+        <img src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/108/posts/31477/image/5-problems-with-color-theory-1-1.jpg" alt="Blue couch color illusion" />
+        </div>
+        <!-- <div class="square" id="couch">#c9e6fd</div> -->
+    </div>
 
-    <p>
-      While our brain's ability to adjust for the situation is helpful, it may sometimes trick us.
-      Here's an example by the checker shadow illusion. Squares A and B are the same color, but most people see A as being a darker shade of grey than B.
-      When you put a color picker to it, both are #6F6F6F.
-    </p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Checker_shadow_illusion.svg/250px-Checker_shadow_illusion.svg.png" alt="Checker Shadow Illusion" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Grey_square_optical_illusion_proof2.svg/250px-Grey_square_optical_illusion_proof2.svg.png" alt="Checker Proof" />
-    <div class="square" id="cylinder">#6F6F6F</div>
+    <div class="flex flex-row">
+      <p class="w-1/2">
+        This image demonstrates how our eyes will "subtract" the lighting of the situation in order to identify the actual color of the object.
+      </p>
+      <div class="w-1/2">
+        <img src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/108/posts/31477/image/5-problems-with-color-theory-2-2.png" alt="Lighting subtraction example" />
+      </div>
+    </div>
 
-    <p>
-      Now that you've got a sense of how your eyes will adjust for the colors you see, here's an explanation for "The Dress."
-    </p>
-    <img src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/108/posts/31477/image/5-problems-with-color-theory-2-5.jpg" alt="Dress explanation image" />
-    <p>
-      In the original image of the dress, the lighting conditions were ambiguous, which led people to perceive the "true" color of the dress differently.
-    </p>
-    <b>If you saw the dress as white and gold:</b>
-    <p>
-      Your brain subconsciously assumed the dress was in shadow. Shadows tend to overrepresent blue light, so your brain mentally subtracted blue to adjust for the lighting.
-      This resulted in a perception of a dress that appeared brighter and more yellow — a "white and gold" dress.
-    </p>
+    <div class="flex flex-row">
+      <p class="w-1/2">
+        While our brain's ability to adjust for the situation is helpful, it may sometimes trick us.
+        Here's an example by the checker shadow illusion. Squares A and B are the same color, but most people see A as being a darker shade of grey than B.
+        When you put a color picker to it, both are #6F6F6F.
+      </p>
+      <div class="flex flex-row mx-auto w-1/2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Checker_shadow_illusion.svg/250px-Checker_shadow_illusion.svg.png" alt="Checker Shadow Illusion" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Grey_square_optical_illusion_proof2.svg/250px-Grey_square_optical_illusion_proof2.svg.png" alt="Checker Proof" />
+    <!-- <div class="square" id="cylinder">#6F6F6F</div> -->
+     </div>
+    </div>
 
-    <b>If you saw the dress as black and blue:</b>
-    <p>
-      Your brain subconsciously assumed the dress was in light. Light tends to overrepresent yellow light, so your brain mentally subtracted yellow to adjust for the lighting.
-      This resulted in a perception of a dress that appeared darker and more blue — a "black and blue" dress.
-    </p>
+    <div class="flex flex-row">
+        <p class="w-1/2">
+          Now that you've got a sense of how your eyes will adjust for the colors you see, here's an explanation for "The Dress.
+          In the original image of the dress, the lighting conditions were ambiguous, which led people to perceive the "true" color of the dress differently.
+          <b>If you saw the dress as white and gold:</b>
+          Your brain subconsciously assumed the dress was in shadow. Shadows tend to overrepresent blue light, so your brain mentally subtracted blue to adjust for the lighting.
+          This resulted in a perception of a dress that appeared brighter and more yellow — a "white and gold" dress.
+          <b>If you saw the dress as black and blue:</b>
+          Your brain subconsciously assumed the dress was in light. Light tends to overrepresent yellow light, so your brain mentally subtracted yellow to adjust for the lighting.
+          This resulted in a perception of a dress that appeared darker and more blue — a "black and blue" dress.
+        </p>
+        <div class="w-1/2">
+          <img src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/108/posts/31477/image/5-problems-with-color-theory-2-5.jpg" alt="Dress explanation image" />
+        </div>
+    </div>
 
-    <p>
-      If you need help understanding how lighting is associated with blue or yellow, here is an example of how artists paint shadows in a bluer tone and light in a yellower tone to create the illusion of lighting:
-    </p>
-    <img src="https://www.saatchiart.com/saatchi-images/saatchi/2265707/art/11682519/10744759-HORHDHSJ-7.jpg" alt="Artistic lighting example" />
+    <div class="flex flex-row">
+      <p class="w-1/2 h-1/2">
+        If you need help understanding how lighting is associated with blue or yellow, here is an example of how artists paint shadows in a bluer tone and light in a yellower tone to create the illusion of lighting:
+      </p>
+      <div class="w-1/2">
+        <img src="https://www.saatchiart.com/saatchi-images/saatchi/2265707/art/11682519/10744759-HORHDHSJ-7.jpg" alt="Artistic lighting example" />
+      </div>
+    </div>
   </div>
 
   <!-- Sources -->
@@ -140,6 +189,30 @@ P05: Color Theory for Dummies
   </div>
 
 </div>
+
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("slides");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndex-1].style.display = "block";
+  } 
+</script>
 
 {% endblock %}
 </html>
