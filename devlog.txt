@@ -210,3 +210,12 @@ niaL -- 2025-06-05 21:18
 niaL -- 2025-06-05 23:13
 - added color wheel page with selector display
 - the wheel likes to move i think it is funny
+
+naomiL -- 2025-06-05 23:40
+- popup when submitting answer (ultimately deleted)
+- position fixing
+- footer improvement
+- image styling
+- hidden b uttons + some javascript
+- fixing minor bugs(padding, margin, etc.)
+- flash message styling
