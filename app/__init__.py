@@ -138,7 +138,7 @@ def color():
             outer_left=outer_left,
             outer_right=outer_right,
             same=(correct == "same"),
-            guessed=True
+            guessed=guessed
         )
 
     colors = color_randomizer()
