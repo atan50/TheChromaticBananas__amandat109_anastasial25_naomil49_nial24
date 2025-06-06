@@ -94,11 +94,14 @@ P05: Color Theory for Dummies
   <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8 mx-2" id="g2" name="guess" value="different" onclick="animatecolor()">different</button> -->
   <!-- <input type="hidden" name="correct" value="{{ 'same' if same else 'different' }}"> -->
   {% if guessed %}
+  <div>
     <button type="button" onclick="animateColor()" class="rounded-full bg-yellow-300 px-4 py-2 my-4">Shift Colors</button>
+    <a href="/color"> Play Again </a>
     <script>
       document.getElementById("g1").classList.add("hidden");
       document.getElementById("g2").classList.add("hidden");
     </script>
+    </div>
   {% endif %}
 
 </form>
