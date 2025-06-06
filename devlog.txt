@@ -229,6 +229,8 @@ anastasiaL -- 2025-06-05 23:45
 - added scores to profile page (lots of debugging required)
 - added average random score to profile page
 - fixed minor bugs
+- updated README
+- put unsplash key into keys folder
 
 anastasiaL, niaL -- 2025-06-06 3:51
 - updated design doc:

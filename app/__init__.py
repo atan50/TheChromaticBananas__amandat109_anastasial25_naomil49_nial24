@@ -203,7 +203,7 @@ def color():
     )
 
 
-key = 'uWM9sQ5gmxuIo55YD6WvP2wa6w0gCi3gUeLc6qAY_T4'
+key = open("./keys/key_unsplash.txt").readline()
 endpoint = 'https://api.unsplash.com/photos/random/?client_id=' + key
 req = Request(url=endpoint, headers={'User-Agent': 'Mozilla/6.0'})
 data = json.loads(urlopen(req).read())
