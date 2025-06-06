@@ -130,6 +130,8 @@ def profile():
 
 @app.route('/wheel', methods=['GET', 'POST'])
 def wheel():
+    if 'username' in session:
+        return render_template('wheel.html', logged_in=True)
     return render_template('wheel.html')
 
 @app.route('/color', methods=['GET', 'POST'])
