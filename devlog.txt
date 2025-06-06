@@ -228,3 +228,4 @@ anastasiaL -- 2025-06-05 23:45
 - fixed navbar issue (on random and color, navbar for signed in users was wrong)
 - added scores to profile page (lots of debugging required)
 - added average random score to profile page
+- fixed minor bugs

@@ -8,9 +8,10 @@
 
 Amanda: PM and droplet host
 
-Amanda and Naomi: Front-end (especially game + color viewing)
+Amanda and Naomi: Front-end
  * HTML/CSS
- * JavaScript React
+ * Sass
+ * JavaScript
  * Utilizing Tailwind
 
 Anastasia: Backend
@@ -18,11 +19,13 @@ Anastasia: Backend
  * Python Flask
  * API
  * Profile page
+   * customizable color gradient background
+   * scores from games played
+ * Random adjustments game
 
 Nia: Backend 
- * Python/creating functions for the game, including:
-    * random adjustments
-    * developing user scoring, etc.
+ * Color wheel page
+ * Color viewing page
  * Filling out the home page with information about color theory
 
 
