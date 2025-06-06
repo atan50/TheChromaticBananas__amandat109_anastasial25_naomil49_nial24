@@ -16,8 +16,6 @@ from flask import Flask, render_template, request, redirect, session, flash
 from flask_assets import Environment, Bundle
 import db
 from color import *
-# from . import db
-# from .color import *
 
 
 app = Flask(__name__)
@@ -97,11 +95,15 @@ def profile():
         directions = ["", "", "", "", "", "", "", ""]
         directions[color_info[2]] = "checked"
         random_scores = db.get_random_scores(user)
+        avg = 0
         check_random_scores = True
         if (len(random_scores) == 1):
             check_random_scores = False
         else:
             random_scores = random_scores[1:]
+            for i in random_scores:
+                avg = avg + i
+            avg = avg/len(random_scores)
         color_scores = db.get_color_scores(user)
         total = color_scores[0] + color_scores[1]
         acc = 0
@@ -122,7 +124,7 @@ def profile():
                                random_scores = random_scores,
                                check_random_scores = check_random_scores,
                                color_scores = color_scores,
-                               acc = acc)
+                               acc = acc, avg = avg)
     else:
         return redirect('/login')
 
