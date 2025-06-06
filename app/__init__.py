@@ -14,10 +14,10 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from flask import Flask, render_template, request, redirect, session, flash
 from flask_assets import Environment, Bundle
-# import db
-# from color import *
-from . import db
-from .color import *
+import db
+from color import *
+# from . import db
+# from .color import *
 
 
 app = Flask(__name__)
