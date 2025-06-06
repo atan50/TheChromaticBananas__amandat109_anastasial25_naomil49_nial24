@@ -126,6 +126,9 @@ def profile():
     else:
         return redirect('/login')
 
+@app.route('/wheel', methods=['GET', 'POST'])
+def wheel():
+    return render_template('wheel.html')
 
 @app.route('/color', methods=['GET', 'POST'])
 def color():
@@ -167,7 +170,7 @@ def color():
             outer_left=outer_left,
             outer_right=outer_right,
             same=(correct == "same"),
-            guessed=True
+            guessed=guessed
         )
 
     colors = color_randomizer()

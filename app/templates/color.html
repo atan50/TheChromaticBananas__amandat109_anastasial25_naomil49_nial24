@@ -45,33 +45,18 @@ P05: Color Theory for Dummies
         z-index: 1;
     }
 
+    .flash
+
     /* .guess {
         position: relative;
         top: 550px;
         margin: 10px;
     } */
 
-      /* .test{
-        position: absolute;
-        right: 0px;
-        padding: 50px;
-      } */
   </style>
 </head>
 
 {% extends 'base.html' %}
-
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <ul class="flashes">
-      {% for category, message in messages %}
-        <li class="flash {{ category }}">{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-
 
 {% block content %}
 
@@ -90,21 +75,23 @@ P05: Color Theory for Dummies
   <input type="hidden" name="outer_right" value="{{ outer_right }}">
   <input type="hidden" name="correct" value="{{ 'same' if same else 'different' }}">
 
-  <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8 mx-2" id="g1" name="guess" value="same" onclick="animatecolor()">same</button>
-  <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8 mx-2" id="g2" name="guess" value="different" onclick="animatecolor()">different</button>
+  <button type="submit" class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8 mx-2" id="g1" name="guess" value="same">same</button>
+  <button type="submit" class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8 mx-2" id="g2" name="guess" value="different">different</button>
   <!-- <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8 mx-2" id="g1" name="guess" value="same" onclick="animatecolor()">same</button>
   <button class="rounded-full outline-offset-8 p-2 bg-neutral-200/60 px-8 mx-2" id="g2" name="guess" value="different" onclick="animatecolor()">different</button> -->
   <!-- <input type="hidden" name="correct" value="{{ 'same' if same else 'different' }}"> -->
+  {% if guessed %}
+  <div>
+    <button type="button" onclick="animateColor()" class="rounded-full bg-yellow-300 px-4 py-2 my-4">Shift Colors</button>
+    <a href="/color"> Play Again </a>
+    <script>
+      document.getElementById("g1").classList.add("hidden");
+      document.getElementById("g2").classList.add("hidden");
+    </script>
+    </div>
+  {% endif %}
+
 </form>
-
-
-<div class="hidden fixed top-1/3 right-1/3 text-center object-center justify-center items-center z-50 bg-neutral-200/95 rounded-2xl outline-offset-8 p-10 mx-2 h-auto w-1/3" id="popup">
-  <a href="/color"> play again </a><br>
-  <!-- {{ 'same' if same else 'different' }} -->
-  <!-- {% if same %} -->
-    <!-- add stuff for updaging score here? -->
-  <!-- {% endif %} -->
-</div>
 
 
 <!-- colors -->
@@ -120,69 +107,46 @@ P05: Color Theory for Dummies
   <div class="square" id="square-right-inside" style="right: 15%;"></div>
 </div>
 
-<div id="popup" class="...">
-  <a href="/color"> play again </a><br>
-</div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const guessed = {{ 'true' if guessed else 'false' }};
+  const guessed = {{ 'true' if guessed else 'false' }};
+  function animateColor() {
+    // document.addEventListener("DOMContentLoaded", () => {
 
-    if (guessed) {
-      const leftInside = document.getElementById("square-left-inside");
-      const rightInside = document.getElementById("square-right-inside");
+      if (guessed) {
+        const leftInside = document.getElementById("square-left-inside");
+        const rightInside = document.getElementById("square-right-inside");
 
-      let leftPos = 20; 
-      let rightPos = 20; 
+        let leftPos = 20; 
+        let rightPos = 20; 
 
-      const interval = setInterval(() => {
-        if (leftPos >= 30 || rightPos >= 30) {
-          clearInterval(interval);
-        } else {
-          leftPos += 0.5;
-          rightPos += 0.5;
-          leftInside.style.left = leftPos + "%";
-          rightInside.style.right = rightPos + "%";
-        }
-      }, 25);
-    }
-  });
+        const interval = setInterval(() => {
+          if (leftPos >= 30 || rightPos >= 30) {
+            clearInterval(interval);
+          } else {
+            leftPos += 0.5;
+            rightPos += 0.5;
+            leftInside.style.left = leftPos + "%";
+            rightInside.style.right = rightPos + "%";
+          }
+        }, 25);
+      }
+    ;
+  }
 
-  // function animatecolor(){
-  //   document.getElementById("popup").classList.remove("hidden");
-  //   document.getElementById("g1").classList.add("invisible");
-  //   document.getElementById("g2").classList.add("invisible");
-
-  //   // item.classList.remove("hidden");
-  //   console.log('popup');
-
-  //   const elem = document.getElementById("square-left-inside");
-  //   var right = document.getElementById("square-right-inside");
-
-  //   let id = null; 
-  //   let pos = 0;
-  //   clearInterval(id);
-  //   id = setInterval(frame, 5);
-  //   function frame() {
-  //     // console.log(pos)
-  //     if (pos == 350) {
-  //       clearInterval(id);
-  //     } else {
-  //       pos++; 
-  //       elem.style.right = pos + "px"; 
-  //       console.log(elem.style.right)
-  //     }
-  //   }
-    // const tocenter = [
-    //   { transform: "translateX(50px)"},
-    // ]
-    // const centertime  ={
-    //   duration: 1000,
-    //   iterations: 1,
-    // };
-    // left.style.left =  `${event.offsetX}px`
-    // left.animate(tocenter, centertime);
-    // right.animate(tocenter, centertime);
 </script>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+      <div class="flash-messages">
+      {% for category, message in messages %}
+          <div class="absolute top-20 right-1/3 left-1/3 rounded-full outline-offset-8 border-2 border-solid p-2 bg-neutral-200/60 px-8 mx-2">
+            <div class="flash {{ category }}">{{ message }}</div>
+          </div>
+        {% endfor %}      
+      </div>
+  {% endif %}
+{% endwith %}
+
 
 {% endblock %}
