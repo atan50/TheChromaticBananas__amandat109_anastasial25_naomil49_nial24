@@ -1,0 +1,103 @@
+<!doctype html>
+<!--
+The Chromatic BaNANAs: Amanda Tan, Anastasia Lee, Naomi Lai, and Nia Lam
+SoftDev
+P05: Color Theory for Dummies
+2025-06-06
+-->
+
+<head>
+  <title>Color Viewing</title>
+  <style>
+    #colorCanvas {
+      border-radius: 50%;
+      border: none;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      gap: 50px;
+    }
+
+    #colorPreview {
+      width: 100px;
+      height: 100px;
+      border: 2px solid lightgrey;
+      border-radius: 8px;
+      background-color: white;
+    }
+  </style>
+</head>
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <canvas id="colorCanvas" width="1000" height="1000"></canvas>
+  
+  <div>
+    <div id="colorPreview"></div>
+    <div id="colorValue">Click the wheel to pick a color</div>
+  </div>
+</div>
+
+<script>
+  function colorPicker() {
+    var canvas = document.getElementById('colorCanvas');
+    var ctx = canvas.getContext('2d');
+
+    var img = new Image();
+    img.onload = function() {
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    }
+    img.src = "static/assets/wheel.png";
+
+    var colorPreview = document.getElementById('colorPreview');
+    var colorValue = document.getElementById('colorValue');
+
+    var dragging = false;
+
+    function getColor(event) {
+      var rect = canvas.getBoundingClientRect();
+      var x = event.clientX - rect.left;
+      var y = event.clientY - rect.top;
+
+      if(x < 0 || y < 0 || x > canvas.width || y > canvas.height) {
+        return;
+      }
+
+      var imgData = ctx.getImageData(x, y, 1, 1).data;
+      var rgba = 'rgba(' + imgData[0] + ', ' + imgData[1] + ', ' + imgData[2] + ', ' + (imgData[3]/255) + ')';
+
+      colorPreview.style.backgroundColor = rgba;
+      colorValue.textContent = rgba;
+    }
+
+    canvas.addEventListener('mousedown', function(e) {
+      dragging = true;
+      getColor(e);
+    });
+
+    canvas.addEventListener('mousemove', function(e) {
+      if(dragging) {
+        getColor(e);
+      }
+    });
+
+    canvas.addEventListener('mouseup', function() {
+      dragging = false;
+    });
+
+    canvas.addEventListener('mouseleave', function() {
+      dragging = false;
+    });
+  }
+
+  window.onload = colorPicker;
+</script>
+
+{% endblock %}
