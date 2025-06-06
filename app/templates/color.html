@@ -45,6 +45,7 @@ P05: Color Theory for Dummies
         z-index: 1;
     }
 
+    .flash
 
     /* .guess {
         position: relative;
@@ -58,20 +59,6 @@ P05: Color Theory for Dummies
 {% extends 'base.html' %}
 
 {% block content %}
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    hi
-    <div>
-      <ul class="flashes">
-        {% for category, message in messages %}
-          <li class="flash {{ category }}">{{ message }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-{% endwith %}
-
 
 <!-- heading -->
 <div>
@@ -148,5 +135,18 @@ P05: Color Theory for Dummies
   }
 
 </script>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+      <div class="flash-messages">
+      {% for category, message in messages %}
+          <div class="absolute top-20 right-1/3 left-1/3 rounded-full outline-offset-8 border-2 border-solid p-2 bg-neutral-200/60 px-8 mx-2">
+            <div class="flash {{ category }}">{{ message }}</div>
+          </div>
+        {% endfor %}      
+      </div>
+  {% endif %}
+{% endwith %}
+
 
 {% endblock %}
