@@ -75,5 +75,24 @@ P05: Color Theory for Dummies
     <p><input class="rounded-full outline-offset-8 p-2 bg-neutral-50 px-4" type="submit" id="submitButton" value="Save"></p>
   </form>
   </div>
+  <div class="rounded-3xl lg:w-2/3 sm:w-full bg-neutral-50/40 p-6">
+    <h2 class="text-3xl"> Your Scores: </h2> <br>
+    {% if check_random_scores %}
+      <h2 class="text-xl">Random Adjustments:</h2>
+      {% for s in random_scores %}
+        {{s}} <br>
+      {% endfor %}
+      <br>
+    {% endif %}
+    {% if color_scores[0] + color_scores[1] != 0 %}
+      <h2 class="text-xl">Color Viewing:</h2>
+      Correct guesses: {{color_scores[0]}}<br>
+      Incorrect guesses: {{color_scores[1]}}<br>
+      Accuracy rate: {{acc}}
+    {% endif %}
+    {% if not check_random_scores and color_scores[0] + color_scores[1] == 0 %}
+      None yet!
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

@@ -31,7 +31,8 @@ def insert_user_data(username, password):
         'color1': '#33ccff',
         'color2': '#ff99cc',
         'to': 0,
-        'scores': []
+        'random_scores': [-1],
+        'color_scores': [0, 0]      # [num correct, num incorrect]
     }
     user_collection.insert_one(user_dict)
 
@@ -60,16 +61,33 @@ def update_color_info(username, color1, color2, to):
         {'$set': {'color1': color1, 'color2': color2, 'to': to}}
         )
 
-def get_scores(username):
+def get_random_scores(username):
     for user_document in user_collection.find({'username': username}):
-        scores = user_document['scores']
+        scores = user_document['random_scores']
     return scores
 
-def update_scores(username, score):
-    new_scores = get_scores(username).append(score)
+def update_random_scores(username, score):
+    scores = get_random_scores(username)
+    scores.append(score)
     user_collection.update_one( 
         {'username': username},
-        {'$set': {'scores': scores}}
+        {'$set': {'random_scores': scores}}
+        )
+    
+def get_color_scores(username):
+    for user_document in user_collection.find({'username': username}):
+        scores = user_document['color_scores']
+    return scores
+
+def update_color_scores(username, correct):
+    scores = get_color_scores(username)
+    if correct:
+        new_scores = [scores[0]+1, scores[1]]
+    else:
+        new_scores = [scores[0], scores[1]+1]
+    user_collection.update_one( 
+        {'username': username},
+        {'$set': {'color_scores': new_scores}}
         )
 
 def clear_collection(collection_name):

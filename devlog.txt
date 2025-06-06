@@ -177,3 +177,11 @@ anastasiaL -- 2025-06-03 11:47
 
 anastasiaL -- 2025-06-04 11:47
 - debugging and making changes to the random adjustments game
+
+anastasiaL -- 2025-06-04 15:35
+- random adjustments game works!!
+
+anastasiaL -- 2025-06-05 23:45
+- updated database to correctly get and update random scores and color scores
+- fixed navbar issue (on random and color, navbar for signed in users was wrong)
+- added scores to profile page (lots of debugging required)

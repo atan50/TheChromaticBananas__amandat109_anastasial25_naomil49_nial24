@@ -14,10 +14,10 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from flask import Flask, render_template, request, redirect, session, flash
 from flask_assets import Environment, Bundle
-# import db
-# from color import *
-from . import db
-from .color import *
+import db
+from color import *
+# from . import db
+# from .color import *
 
 
 app = Flask(__name__)
@@ -96,7 +96,17 @@ def profile():
                 "top left", "bottom right", "bottom left"]
         directions = ["", "", "", "", "", "", "", ""]
         directions[color_info[2]] = "checked"
-        scores = db.get_scores(user)
+        random_scores = db.get_random_scores(user)
+        check_random_scores = True
+        if (len(random_scores) == 1):
+            check_random_scores = False
+        else:
+            random_scores = random_scores[1:]
+        color_scores = db.get_color_scores(user)
+        total = color_scores[0] + color_scores[1]
+        acc = 0
+        if total != 0:
+            acc = float(color_scores[0])/total
         if request.method == 'POST':
             color1 = request.form['color1']
             color2 = request.form['color2']
@@ -108,7 +118,11 @@ def profile():
         return render_template("profile.html", logged_in = True, 
                                username = user, c1 = color_info[0], 
                                c2 = color_info[1], d = directions, 
-                               dir = list[color_info[2]], scores = scores)
+                               dir = list[color_info[2]], 
+                               random_scores = random_scores,
+                               check_random_scores = check_random_scores,
+                               color_scores = color_scores,
+                               acc = acc)
     else:
         return redirect('/login')
 
@@ -130,7 +144,22 @@ def color():
             flash("Correct! Yay :D", "correct")
         else:
             flash(f"Wrong :( The correct answer was {correct}.", "wrong")
-
+        if 'username' in session:
+            user = session['username']
+            if guess == correct:
+                db.update_color_scores(user, True)
+            else:
+                db.update_color_scores(user, False)
+            return render_template(
+            "color.html",
+            logged_in = True,
+            inner_left=inner_left,
+            inner_right=inner_right,
+            outer_left=outer_left,
+            outer_right=outer_right,
+            same=(correct == "same"),
+            guessed=True
+        )
         return render_template(
             "color.html",
             inner_left=inner_left,
@@ -143,7 +172,18 @@ def color():
 
     colors = color_randomizer()
     correct = 'same' if colors['same'] else 'different'
-
+    if 'username' in session:
+        return render_template(
+        "color.html",
+        logged_in = True,
+        inner_left=colors["inner_left"],
+        inner_right=colors["inner_right"],
+        outer_left=colors["outer_left"],
+        outer_right=colors["outer_right"],
+        same=colors["same"],
+        correct=correct,
+        guessed=False
+    )
     return render_template(
         "color.html",
         inner_left=colors["inner_left"],
@@ -187,7 +227,11 @@ def random_game():
         total_diff = h_diff + s_diff + b_diff
         if 'username' in session:
             user = session['username']
-            db.update_scores(user, total_diff)
+            db.update_random_scores(user, total_diff)
+            return render_template('random.html', logged_in = True, link = 'url(' + image_url + ')', 
+                               hue = hue_str, hue_num = hue, sat = saturation, bri = brightness, 
+                               h_g = h_guess, s_g = s_guess, b_g = b_guess,
+                               score = total_diff)
         return render_template('random.html', link = 'url(' + image_url + ')', 
                                hue = hue_str, hue_num = hue, sat = saturation, bri = brightness, 
                                h_g = h_guess, s_g = s_guess, b_g = b_guess,
@@ -203,6 +247,10 @@ def random_game():
     h_guess = 0
     s_guess = 100
     b_guess = 100
+    if 'username' in session:
+        return render_template('random.html', logged_in = True, link = 'url(' + globals()['image_url'] + ')', 
+                           hue = globals()['hue_str'], sat = globals()['saturation'], bri = globals()['brightness'],
+                           h_g = h_guess, s_g = s_guess, b_g = b_guess)
     return render_template('random.html', link = 'url(' + globals()['image_url'] + ')', 
                            hue = globals()['hue_str'], sat = globals()['saturation'], bri = globals()['brightness'],
                            h_g = h_guess, s_g = s_guess, b_g = b_guess)
