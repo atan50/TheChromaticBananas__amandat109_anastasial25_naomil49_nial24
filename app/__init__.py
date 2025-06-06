@@ -112,6 +112,9 @@ def profile():
     else:
         return redirect('/login')
 
+@app.route('/wheel', methods=['GET', 'POST'])
+def wheel():
+    return render_template('wheel.html')
 
 @app.route('/color', methods=['GET', 'POST'])
 def color():

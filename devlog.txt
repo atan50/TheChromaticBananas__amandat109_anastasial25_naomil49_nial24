@@ -138,7 +138,10 @@ niaL -- 2025-05-23 11:45
 - worked on color viewing game
 
 niaL -- 2025-05-24 5:57
-- finished color vieweing game: randomizer, guesses, and display (just kinda ugly atm)
+- finished color viewing game: randomizer, guesses, and display (just kinda ugly atm)
+
+niaL -- 2025-05-25 11:45
+- attempted to adjust color variation values to meet a minimum
 
 naomiL -- 2025-05-27 11:45
 - themes
@@ -146,22 +149,38 @@ naomiL -- 2025-05-27 11:45
 - working on position for squares
 - why no external css :(
 
+niaL -- 2025-05-27 11:45
+- worked on color value adjustments
+
 anastasiaL -- 2025-05-27 11:47
 - worked on random adjustments game
 
 naomiL -- 2025-05-28 11:47
 - color game positioning (anchor, absolute, margin) complete
 
+niaL -- 2025-05-28 11:47
+- fixed color variation adjustments
+
 anastasiaL -- 2025-05-28 11:47
 - worked on random adjustments game
 
+niaL -- 2025-05-29 11:45
+- gave feedback to other teams on the QAF
+
 anastasiaL -- 2025-05-29 11:47
 - gave feedback to Lorem Ipsum on the QAF
+
+niaL -- 2025-05-30 11:47
+- cleaned up color viewing code
+- reviewed QAF feedback
 
 naomiL -- 2025-06-02 11:43
 - styling on profile
   - navbar
 - styling on login page
+
+niaL -- 2025-06-02 11:45
+- worked on color viewing answer display and color reveal per QAF feedback
 
 anastasiaL -- 2025-06-03 00:01
 - finally got the random adjustments to work!
@@ -177,3 +196,17 @@ anastasiaL -- 2025-06-03 11:47
 
 anastasiaL -- 2025-06-04 11:47
 - debugging and making changes to the random adjustments game
+
+niaL -- 2025-06-02 11:45
+- worked on color viewing answer display and color reveal
+
+niaL -- 2025-06-05 17:33
+- added color viewing color reveal animation
+- struggling with flash messages and the button is hiding from measures
+
+niaL -- 2025-06-05 21:18
+- added content including various images to home page
+
+niaL -- 2025-06-05 23:13
+- added color wheel page with selector display
+- the wheel likes to move i think it is funny
